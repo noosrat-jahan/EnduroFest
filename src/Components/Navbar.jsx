@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from "../assets/Logoo.png"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 
 const Navbar = () => {
+
+    const { user, signoutUser } = useContext(AuthContext)
+    const naviagte = useNavigate()
+
+    const handleSignOut = () => {
+        signoutUser()
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "You have logged out Successfully",
+            showConfirmButton: false,
+            timer: 3500
+        });
+        naviagte('/login')
+    }
+
     return (
         <div className="navbar bg-base-100 w-11/12 mx-auto">
             <div className="navbar-start">
@@ -55,11 +73,30 @@ const Navbar = () => {
             </div> */}
             <div className="navbar-end gap-3">
                 <Link to="all-marathons" className='text-gray-700 lg:text-xl text-sm font-semibold'>Marathons</Link>
-                <Link to="/login" className='bg-[#36388b] lg:px-4 px-3 py-2 rounded-md text-white text-xs lg:text-lg font-bold'>Login</Link>
-                <Link to="/register" className='bg-pink-500 lg:px-4 px-3 py-2 rounded-md text-white font-bold text-xs lg:text-lg'>Register</Link>
+                {
+                    user ?
+                        <div className='flex gap-3 items-center'>
+                            <Link to="/dashboard" className='text-gray-700 lg:text-xl text-sm font-semibold'>Dashboard</Link>
+                            <div className="avatar online">
+                                <div className="w-16 rounded-full">
+                                    <img src={user?.photoURL} />
+                                </div>
+
+                            </div>
+                            <h1>{user?.email}</h1>
+                            <Link to="/login" onClick={handleSignOut} className='bg-[#36388b] lg:px-4 px-3 py-2 rounded-md text-white text-xs lg:text-lg font-bold'>Log Out</Link>
+                        </div>
+                        :
+                        <div className='flex gap-3'>
+                            <Link to="/login" className='bg-[#36388b] lg:px-4 px-3 py-2 rounded-md text-white text-xs lg:text-lg font-bold'>Login</Link>
+                            <Link to="/register" className='bg-pink-500 lg:px-4 px-3 py-2 rounded-md text-white font-bold text-xs lg:text-lg'>Register</Link>
+                        </div>
+                }
             </div>
         </div>
     );
 };
 
 export default Navbar;
+
+

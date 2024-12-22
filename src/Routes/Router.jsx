@@ -8,6 +8,8 @@ import Home from '../Components/Home';
 import Login from '../Authentication/Login';
 import Register from '../Authentication/Register';
 import Marathons from '../Components/Marathons';
+import PrivateRoute from './PrivateRoute';
+import Dashboard from '../Components/Dashboard';
 
 const Router = createBrowserRouter([
     {
@@ -20,7 +22,11 @@ const Router = createBrowserRouter([
         },
         {
             path: '/all-marathons',
-            element: <Marathons></Marathons>
+            element: <PrivateRoute><Marathons></Marathons></PrivateRoute>
+        },
+        {
+            path: '/dashboard',
+            element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
         },
         {
             path: '/login',
