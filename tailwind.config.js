@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        roboto: ['Roboto', 'ui-sans-serif', 'system-ui'], // Add Roboto as the default sans-serif font
+        montserrat: ['Montserrat', 'ui-sans-serif', 'system-ui'], // Add Montserrat as the default sans-serif font
+      },
+    },
   },
   plugins: [require('daisyui'),],
 }
