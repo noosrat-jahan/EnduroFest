@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useContext, useState } from 'react';
 
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { AuthContext } from '../Provider/AuthProvider';
+
 
 const AddMarathon = () => {
 
     const [regStartDate, setRegStartDate] = useState(new Date());
     const [regEndDate, setRegEndDate] = useState(new Date());
     const [eventStartDate, setEventStartDate] = useState(new Date());
-    console.log(regStartDate, regEndDate, eventStartDate);
 
-    const handleAddMarathon = e =>{
+    const {user} = useContext(AuthContext)
+
+    const navigate = useNavigate()
+
+    const handleAddMarathon = e => {
         e.preventDefault()
 
         const formData = new FormData(e.target)
@@ -19,8 +26,28 @@ const AddMarathon = () => {
         formData.set("regEndDate", regEndDate)
         formData.set("eventStartDate", eventStartDate)
 
-        const formEntries = Object.fromEntries(formData.entries());
-        console.log(formEntries);
+        const MarathonsInfo = Object.fromEntries(formData.entries());
+        console.log(MarathonsInfo);
+
+        // axios post method
+        axios.post('http://localhost:5000/all-marathons', MarathonsInfo)
+            .then(res => {
+                console.log("Data: ",res.data);
+                if(res.data.insertedId){
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Congrates!",
+                        text: "New Marathon Event is Added Successfully",
+                        showConfirmButton: false,
+                        timer: 3000
+                      });
+                    navigate('/all-marathons')
+                }
+            })
+            .catch(err => {
+                console.log("Error: ", err);
+            })
     }
 
     return (
@@ -32,10 +59,19 @@ const AddMarathon = () => {
                 {/* form element  */}
                 <form onSubmit={handleAddMarathon} className="card-body p-0">
 
+                    {/* user email  */}
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text font-semibold text-lg"> Email</span>
+                        </label>
+                        <input type="email" name='email' defaultValue={user?.email} readOnly  className="input input-bordered" required />
+                    </div>
+
+
                     {/* title  */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text font-semibold text-lg"> Title</span>
+                            <span className="label-text font-semibold text-lg">Marathon Title</span>
                         </label>
                         <input type="text" name='title' placeholder="Enter Marathon Title" className="input input-bordered" required />
                     </div>
@@ -48,9 +84,9 @@ const AddMarathon = () => {
                         <input type="text" name='image' placeholder="Enter Marathon Image Url" className="input input-bordered" required />
                     </div>
 
-                   
+
                     <div className=' lg:flex gap-5'>
-                         {/* start reg date  */}
+                        {/* start reg date  */}
                         <div className="form-control lg:w-1/2">
                             <label className="label">
                                 <span className="label-text font-semibold text-lg">Start Registration Date</span>
@@ -117,7 +153,7 @@ const AddMarathon = () => {
                     </div>
 
 
-                    {/* event description  */}                    
+                    {/* event description  */}
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text font-semibold text-lg">Description</span>

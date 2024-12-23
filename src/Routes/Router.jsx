@@ -11,6 +11,7 @@ import Marathons from '../Components/Marathons';
 import PrivateRoute from './PrivateRoute';
 import Dashboard from '../Components/Dashboard';
 import AddMarathon from '../Components/AddMarathon';
+import UpdateProfile from '../Components/UpdateProfile';
 
 const Router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const Router = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>
+      },
+      {
+        path: '/update-profile',
+        element: <UpdateProfile></UpdateProfile>
       },
     ]
   },

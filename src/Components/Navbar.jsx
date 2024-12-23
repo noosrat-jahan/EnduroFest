@@ -12,14 +12,20 @@ const Navbar = () => {
 
     const handleSignOut = () => {
         signoutUser()
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "You have logged out Successfully",
-            showConfirmButton: false,
-            timer: 3500
-        });
-        naviagte('/login')
+            .then(() => {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "You have been logged out Successfully",
+                    showConfirmButton: false,
+                    timer: 3500
+                });
+                naviagte('/login')
+            })
+
+            .catch(err => {
+                console.log('error:', err.message);
+            })
     }
 
     return (
@@ -71,20 +77,28 @@ const Navbar = () => {
                     <li><a>Item 3</a></li>
                 </ul>
             </div> */}
+
             <div className="navbar-end gap-3">
-                <Link to="all-marathons" className='text-gray-700 bg-pink-200 rounded-md px-3 lg:text-xl text-sm font-semibold'>Marathons</Link>
+                <Link to="/all-marathons" className='text-gray-700 bg-pink-200 rounded-md px-3 lg:text-xl text-sm font-semibold'>Marathons</Link>
                 {
                     user ?
                         <div className='flex gap-3 items-center'>
                             <Link to="/dashboard" className='text-gray-700 bg-pink-200 rounded-md px-3 lg:text-xl text-sm font-semibold'>Dashboard</Link>
-                            <div className="avatar online">
-                                <div className="w-16 rounded-full">
-                                    <img src={user?.photoURL} />
-                                </div>
 
-                            </div>
                             <h1>{user?.email}</h1>
-                            <Link to="/login" onClick={handleSignOut} className='bg-[#36388b] lg:px-4 px-3 py-2 rounded-md text-white text-xs lg:text-lg font-bold'>Log Out</Link>
+
+                            <div className="dropdown dropdown-hover">
+                                <div tabIndex={0} role="button">
+                                    <img
+                                        src={user?.photoURL}
+                                        className="w-16 h-16 rounded-full border border-gray-400" />
+                                </div>
+                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-10 w-48 space-y-3 p-2 shadow right-0">
+                                    <li><h1 className='text-lg font-semibold'>{user?.displayName}</h1></li>
+                                    <li><Link to="/update-profile" onClick={handleSignOut} className='bg-[#4fb5e1] lg:px-4 px-3 py-2 rounded-md text-white text-xs lg:text-lg font-bold'>Update Profile</Link></li>
+                                    <li><Link to="/login" onClick={handleSignOut} className='bg-[#696be3] lg:px-4 px-3 py-2 rounded-md text-white text-xs lg:text-lg font-bold'>Log Out</Link></li>
+                                </ul>
+                            </div>
                         </div>
                         :
                         <div className='flex gap-3'>
