@@ -12,6 +12,7 @@ import PrivateRoute from './PrivateRoute';
 import Dashboard from '../Components/Dashboard';
 import AddMarathon from '../Components/AddMarathon';
 import UpdateProfile from '../Components/UpdateProfile';
+import MarathonDetails from '../Components/MarathonDetails';
 
 const Router = createBrowserRouter([
   {
@@ -26,6 +27,11 @@ const Router = createBrowserRouter([
         path: '/all-marathons',
         element: <PrivateRoute><Marathons></Marathons></PrivateRoute>,
         loader: ()=>fetch(`${import.meta.env.VITE_API_URL}/all-marathons`)
+      },
+      {
+        path: '/all-marathons/:id',
+        element: <PrivateRoute><MarathonDetails></MarathonDetails></PrivateRoute>,
+        loader: ({params})=>fetch(`${import.meta.env.VITE_API_URL}/all-marathons/${params.id}`)
       },
       {
         path: '/login',
