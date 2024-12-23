@@ -24,7 +24,8 @@ const Router = createBrowserRouter([
       },
       {
         path: '/all-marathons',
-        element: <PrivateRoute><Marathons></Marathons></PrivateRoute>
+        element: <PrivateRoute><Marathons></Marathons></PrivateRoute>,
+        loader: ()=>fetch(`${import.meta.env.VITE_API_URL}/all-marathons`)
       },
       {
         path: '/login',

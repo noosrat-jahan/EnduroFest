@@ -95,7 +95,7 @@ const Navbar = () => {
                                 </div>
                                 <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-10 w-48 space-y-3 p-2 shadow right-0">
                                     <li><h1 className='text-lg font-semibold'>{user?.displayName}</h1></li>
-                                    <li><Link to="/update-profile" onClick={handleSignOut} className='bg-[#4fb5e1] lg:px-4 px-3 py-2 rounded-md text-white text-xs lg:text-lg font-bold'>Update Profile</Link></li>
+                                    <li><Link to="/update-profile" className='bg-[#4fb5e1] lg:px-4 px-3 py-2 rounded-md text-white text-xs lg:text-lg font-bold'>Update Profile</Link></li>
                                     <li><Link to="/login" onClick={handleSignOut} className='bg-[#696be3] lg:px-4 px-3 py-2 rounded-md text-white text-xs lg:text-lg font-bold'>Log Out</Link></li>
                                 </ul>
                             </div>
