@@ -13,6 +13,9 @@ import Dashboard from '../Components/Dashboard';
 import AddMarathon from '../Components/AddMarathon';
 import UpdateProfile from '../Components/UpdateProfile';
 import MarathonDetails from '../Components/MarathonDetails';
+import ErrorPage from '../Components/ErrorPage';
+import MyMarathon from '../Components/MyMarathon';
+import MyApplications from '../Components/MyApplications';
 
 const Router = createBrowserRouter([
   {
@@ -33,6 +36,7 @@ const Router = createBrowserRouter([
         element: <PrivateRoute><MarathonDetails></MarathonDetails></PrivateRoute>,
         loader: ({params})=>fetch(`${import.meta.env.VITE_API_URL}/all-marathons/${params.id}`)
       },
+      
       {
         path: '/login',
         element: <Login></Login>
@@ -54,9 +58,21 @@ const Router = createBrowserRouter([
       {
         path: "/dashboard/add-marathon",
         element: <PrivateRoute><AddMarathon></AddMarathon></PrivateRoute>
-      }
+      },
+      {
+        path: "/dashboard/my-marathon-list",
+        element: <PrivateRoute><MyMarathon></MyMarathon></PrivateRoute>
+      },
+      {
+        path: "/dashboard/my-apply-list",
+        element: <PrivateRoute><MyApplications></MyApplications></PrivateRoute>
+      },
     ]
   },
+  {
+    path: "*",
+    element: <ErrorPage></ErrorPage>
+  }
 ]);
 
 export default Router;

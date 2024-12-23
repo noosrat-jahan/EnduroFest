@@ -83,7 +83,7 @@ const Navbar = () => {
                 {
                     user ?
                         <div className='flex gap-3 items-center'>
-                            <Link to="/dashboard" className='text-gray-700 bg-pink-200 rounded-md px-3 lg:text-xl text-sm font-semibold'>Dashboard</Link>
+                            <Link to="/dashboard/my-marathon-list" className='text-gray-700 bg-pink-200 rounded-md px-3 lg:text-xl text-sm font-semibold'>Dashboard</Link>
 
                             <h1>{user?.email}</h1>
 

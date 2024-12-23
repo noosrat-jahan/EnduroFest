@@ -34,4 +34,4 @@ const MarathonDetails = () => {
     );
 };
 
-export default MarathonDetails;
+export default MarathonDetails; 
