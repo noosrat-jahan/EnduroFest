@@ -72,11 +72,11 @@ const Navbar = () => {
                 </ul>
             </div> */}
             <div className="navbar-end gap-3">
-                <Link to="all-marathons" className='text-gray-700 lg:text-xl text-sm font-semibold'>Marathons</Link>
+                <Link to="all-marathons" className='text-gray-700 bg-pink-200 rounded-md px-3 lg:text-xl text-sm font-semibold'>Marathons</Link>
                 {
                     user ?
                         <div className='flex gap-3 items-center'>
-                            <Link to="/dashboard" className='text-gray-700 lg:text-xl text-sm font-semibold'>Dashboard</Link>
+                            <Link to="/dashboard" className='text-gray-700 bg-pink-200 rounded-md px-3 lg:text-xl text-sm font-semibold'>Dashboard</Link>
                             <div className="avatar online">
                                 <div className="w-16 rounded-full">
                                     <img src={user?.photoURL} />
