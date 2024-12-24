@@ -25,6 +25,8 @@ const AddMarathon = () => {
         formData.set("regStartDate", regStartDate)
         formData.set("regEndDate", regEndDate)
         formData.set("eventStartDate", eventStartDate)
+        formData.set("Created At:", new Date().toLocaleString('en-US'))
+        formData.set("Total Registration Count", 0)
 
         const MarathonsInfo = Object.fromEntries(formData.entries());
         console.log(MarathonsInfo);
@@ -159,6 +161,14 @@ const AddMarathon = () => {
                             <span className="label-text font-semibold text-lg">Description</span>
                         </label>
                         <textarea name='description' className="textarea textarea-bordered" placeholder="Add a description about this marathon event..."></textarea>
+                    </div>
+
+                    {/* event full details  */}
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text font-semibold text-lg">Details</span>
+                        </label>
+                        <textarea name='details' className="textarea textarea-bordered" placeholder="Add Details..."></textarea>
                     </div>
 
                     {/* submit button  */}

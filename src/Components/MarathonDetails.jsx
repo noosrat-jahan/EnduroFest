@@ -1,14 +1,36 @@
 import { format } from 'date-fns';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaPersonWalking } from 'react-icons/fa6';
 import { IoLocationSharp } from 'react-icons/io5';
 import { LuCalendarDays } from 'react-icons/lu';
 import { Link, useLoaderData } from 'react-router-dom';
+import { isWithinInterval } from "date-fns";
+import { toast } from 'react-toastify';
 
 const MarathonDetails = () => {
 
     const Marathondetails = useLoaderData()
     console.log(Marathondetails);
+
+    const [isRegistrationOpen, setIsRegistrationOpen] = useState(false)
+
+    useEffect(() => {
+        const currentDate = new Date().toLocaleDateString()
+
+        isWithinInterval(currentDate, {
+            start: Marathondetails.regStartDate,
+            end: Marathondetails.regEndDate
+        }) && setIsRegistrationOpen(true)
+    }, [isRegistrationOpen])
+    // => true
+
+    // if (!isRegistrationOpen) {
+    //     toast.error("", {
+    //         position: "top-center",
+    //         autoClose: 5000,
+    //         hideProgressBar: false,
+    //     });
+    // }
 
     return (
         <div className='w-10/12 mx-auto my-10 space-y-2'>
@@ -27,8 +49,16 @@ const MarathonDetails = () => {
 
             <p className='text-[#353e44] text-lg font-roboto pb-10'>{Marathondetails.details}</p>
 
-            <Link to="/marathon-register" className='uppercase bg-[#00c282] text-white font-bold rounded-lg 
-            px-10 py-4'>Register</Link>
+
+            <Link
+                to={`/all-marathons/${Marathondetails._id}/register`}
+                className="uppercase bg-[#00c282] text-white font-bold rounded-lg 
+                            px-10 py-4"
+                onClick={(e) => !isRegistrationOpen && e.preventDefault()}
+            >
+                Register
+            </Link>
+
 
         </div>
     );
