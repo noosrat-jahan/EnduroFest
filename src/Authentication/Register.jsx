@@ -4,12 +4,14 @@ import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Register = () => {
 
     const { createNewUser, setUser, googleSignIn } = useContext(AuthContext)
 
     const [showPassword, setShowPassword] = useState(false)
+    const [errormessage, setErrormessage] = useState("")
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -24,6 +26,19 @@ const Register = () => {
         const password = form.password.value
         const NewUser = { name, email, photo, password }
         console.log(NewUser);
+
+
+        if(password.length < 6){
+            setErrormessage("⚠️ Password Should be at least 6 character long")
+            return
+        }
+
+        const passwordRegEx = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+
+        if(!passwordRegEx.test(password)){
+            setErrormessage("⚠️ password should contain at least one uppercase letter, one lowercase letter, one digit and one special character.")
+            return
+        }
 
         createNewUser(email, password)
             .then((result) => {
@@ -67,8 +82,11 @@ const Register = () => {
 
     return (
         <div className='px-3'>
-            <div className="card bg-base-100 w-full  mx-auto max-w-md shrink-0 shadow-xl">
-                <h1 className='text-3xl font-semibold text-[#217276]'>Sign Up</h1>
+            <div className="card bg-base-100 w-full px-10 py-6 my-10 font-poppins mx-auto max-w-md shrink-0 shadow-xl">
+                <h1 className='text-3xl font-semibold text-center text-[#217276]'>Sign Up</h1>
+                {
+                    errormessage && <p className='text-red-600 my-4 text-center'>{errormessage}</p>
+                }
                 <form onSubmit={handleRegister} className="card-body p-0">
                     <div className="form-control ">
                         <label className="label">
@@ -114,6 +132,7 @@ const Register = () => {
                         <Link to="/login" className='text-[#26949a] ml-3 font-bold'>Login</Link> </p>
                 </form>
             </div>
+            <ToastContainer />
         </div>
     );
 };

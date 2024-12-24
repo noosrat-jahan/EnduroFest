@@ -3,6 +3,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Login = () => {
 
@@ -34,6 +35,13 @@ const Login = () => {
             })
             .catch(err => {
                 console.log('Error:', err.message);
+                if (err.message === "Firebase: Error (auth/invalid-credential).") {
+                    toast.error("Invalid Email or Password", {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,                        
+                    });
+                }
             })
     }
 
@@ -54,22 +62,23 @@ const Login = () => {
             })
             .catch(err => {
                 console.log('Error:', err.message);
+                
             })
     }
     return (
         <div>
-            <div className="card bg-base-100 w-full mx-auto max-w-md shrink-0 shadow-2xl">
-                <h1 className='text-3xl font-semibold text-[#217276]'>Sign In</h1>
+            <div className="card bg-base-100 w-full font-poppins mx-auto max-w-md py-6 px-10 my-10 shrink-0 shadow-2xl">
+                <h1 className='text-3xl text-center font-semibold text-[#217276]'>Sign In</h1>
                 <form onSubmit={handleLogin} className="card-body p-0">
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Email</span>
+                            <span className="label-text font-semibold">Email</span>
                         </label>
                         <input type="email" name='email' placeholder="Your Email" className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Password</span>
+                            <span className="label-text font-semibold">Password</span>
                         </label>
                         <input type="password" name='password' placeholder="Password" className="input input-bordered" required />
                         <label className="label flex justify-end">
@@ -77,7 +86,7 @@ const Login = () => {
                         </label>
                     </div>
 
-                    <div className="form-control mt-6">
+                    <div className="form-control mt-2">
                         <button className="btn btn-accent text-lg">Login</button>
                     </div>
                     <div className="divider divider-neutral">OR</div>
@@ -89,6 +98,7 @@ const Login = () => {
                         <Link to="/register" className='text-[#26949a] ml-3 font-bold'>Sign Up</Link> </p>
                 </form>
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };

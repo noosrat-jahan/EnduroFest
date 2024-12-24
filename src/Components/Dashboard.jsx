@@ -8,10 +8,10 @@ const Dashboard = () => {
         <div>
             <Navbar></Navbar>
             <div className='min-h-[calc(100vh-200px)] my-10 mx-auto w-11/12 grid grid-cols-1 lg:grid-cols-4 gap-5'>
-                <div className='flex flex-col gap-3 col-span-1'>
-                    <NavLink to="/dashboard/add-marathon" className='bg-lime-200 py-1 rounded-md'>Add Marathon</NavLink>
-                    <NavLink to="/dashboard/my-marathon-list" className='bg-lime-200 py-1 rounded-md'>My Marathon List</NavLink>
-                    <NavLink to="/dashboard/my-apply-list" className='bg-lime-200 py-1 rounded-md'>My Apply List</NavLink>
+                <div className='flex flex-col gap-3 col-span-1 shadow-md text-center font-bold text-lg font-roboto p-5 justify-center h-max rounded-md'>
+                    <NavLink to="/dashboard/add-marathon" className='bg-amber-100 py-1 rounded-md btn text-xl'>Add Marathon</NavLink>
+                    <NavLink to="/dashboard/my-marathon-list" className='bg-amber-100 py-1 rounded-md'>My Marathon List</NavLink>
+                    <NavLink to="/dashboard/my-apply-list" className='bg-amber-100 py-1 rounded-md'>My Apply List</NavLink>
                 </div>
                 <div className='lg:col-span-3'>
                     <Outlet></Outlet>

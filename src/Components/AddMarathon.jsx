@@ -52,9 +52,9 @@ const AddMarathon = () => {
 
     return (
         <div>
-            <div className="card bg-base-100 w-full mx-auto  border border-gray-200 shadow-md">
+            <div className="card bg-base-100 w-full mx-auto  border border-gray-200 shadow-md p-6 ">
                 {/* form heading */}
-                <h1 className='font-bold text-3xl text-purple-800 font-roboto'>Create A Marathon Event</h1>
+                <h1 className='font-bold text-3xl text-cyan-700 font-roboto text-center'>Create A Marathon Event</h1>
 
                 {/* form element  */}
                 <form onSubmit={handleAddMarathon} className="card-body p-0">
@@ -163,7 +163,7 @@ const AddMarathon = () => {
 
                     {/* submit button  */}
                     <div className="form-control mt-6">
-                        <button className="btn btn-info text-lg">Add Event</button>
+                        <button className="btn bg-cyan-600 text-lg font-semibold text-white">Add Event</button>
                     </div>
                 </form>
             </div>

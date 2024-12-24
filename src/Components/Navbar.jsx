@@ -29,7 +29,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className="navbar bg-base-100 w-11/12 mx-auto">
+        <div className="navbar bg-base-100 bg-gradient-to-r from-amber-50 to-purple-100 px-4 mx-auto">
             <div className="navbar-start">
                 {/* <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -60,7 +60,7 @@ const Navbar = () => {
                         <li><a>Item 3</a></li>
                     </ul>
                 </div> */}
-                <img src={logo} alt="" className='w-1/4' />
+                <img src={logo} alt="" className='w-1/5' />
             </div>
             {/* <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -78,12 +78,12 @@ const Navbar = () => {
                 </ul>
             </div> */}
 
-            <div className="navbar-end gap-3">
-                <Link to="/all-marathons" className='text-gray-700 bg-pink-200 rounded-md px-3 lg:text-xl text-sm font-semibold'>Marathons</Link>
+            <div className="navbar-end gap-5">
+                <Link to="/all-marathons" className=' bg-[#3E5879] text-white rounded-md px-3 py-2 lg:text-xl text-sm font-bold'>Marathons</Link>
                 {
                     user ?
                         <div className='flex gap-3 items-center'>
-                            <Link to="/dashboard/my-marathon-list" className='text-gray-700 bg-pink-200 rounded-md px-3 lg:text-xl text-sm font-semibold'>Dashboard</Link>
+                            <Link to="/dashboard/my-marathon-list" className='bg-[#3E5879] text-white  rounded-md px-3 py-2 lg:text-xl text-sm font-bold'>Dashboard</Link>
 
                             <h1>{user?.email}</h1>
 
