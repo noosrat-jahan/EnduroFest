@@ -32,14 +32,14 @@ const MyMarathon = () => {
         const marathonUpdateInfo = Object.fromEntries(formData.entries())
         console.log(marathonUpdateInfo, id);
 
-        axios.put(`http://localhost:5000/all-marathons/${id}`, marathonUpdateInfo)
+        axios.put(`${import.meta.env.VITE_API_URL}/all-marathons/${id}`, marathonUpdateInfo)
             .then(res => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
                         position: "center",
                         icon: "success",                        
-                        text: "Marathon Information Updated Successfully",
+                        text: "Marathon Information is Updated Successfully",
                         showConfirmButton: false,
                         timer: 4000
                     });
@@ -61,7 +61,7 @@ const MyMarathon = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/all-marathons/${id}`)
+                axios.delete(`${import.meta.env.VITE_API_URL}/all-marathons/${id}`)
                     .then(res => {
                         console.log(res.data);
 

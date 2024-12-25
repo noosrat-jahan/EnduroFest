@@ -24,7 +24,7 @@ const MarathonRegister = () => {
         const applicationDetails = Object.fromEntries(formData.entries())
         console.log(applicationDetails);
 
-        axios.post('http://localhost:5000/all-applications', applicationDetails)
+        axios.post('${import.meta.env.VITE_API_URL}/all-applications', applicationDetails)
             .then(res => {
                 console.log('Data:', res.data);
                 if (res.data.insertedId) {

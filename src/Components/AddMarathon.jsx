@@ -32,7 +32,7 @@ const AddMarathon = () => {
         console.log(MarathonsInfo);
 
         // axios post method
-        axios.post('http://localhost:5000/all-marathons', MarathonsInfo)
+        axios.post('${import.meta.env.VITE_API_URL}/all-marathons', MarathonsInfo)
             .then(res => {
                 console.log("Data: ",res.data);
                 if(res.data.insertedId){

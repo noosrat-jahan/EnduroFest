@@ -17,6 +17,7 @@ import ErrorPage from '../Components/ErrorPage';
 import MyMarathon from '../Components/MyMarathon';
 import MyApplications from '../Components/MyApplications';
 import MarathonRegister from '../Components/MarathonRegister';
+// import HomePageMarathon from '../Components/HomePageMarathon';
 
 const Router = createBrowserRouter([
   {
@@ -25,8 +26,10 @@ const Router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home></Home>
+        element: <Home></Home>,   
+        loader: ()=>fetch(`${import.meta.env.VITE_API_URL}/limited-marathons`)     
       },
+     
       {
         path: '/all-marathons',
         element: <PrivateRoute><Marathons></Marathons></PrivateRoute>,

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 
 
 import { FaRegEdit } from 'react-icons/fa';
@@ -16,6 +16,7 @@ import Swal from 'sweetalert2';
 
 const MyApplications = () => {
     const { user } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const LoadedApplications = useLoaderData()
 
@@ -24,6 +25,29 @@ const MyApplications = () => {
     const myApplications = AllApplications.filter(myApplication => myApplication.applicantEmail === user?.email)
 
 
+    const handleUpdateApplication = (e, id) => {
+        e.preventDefault()
+
+        const formData = new FormData(e.target)
+        const applicationUpdateInfo = Object.fromEntries(formData.entries())
+        console.log(applicationUpdateInfo, id);
+
+        axios.put(`${import.meta.env.VITE_API_URL}/all-applications/${id}`, applicationUpdateInfo)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",                        
+                        text: "Your Registration Information has been Updated Successfully",
+                        showConfirmButton: false,
+                        timer: 4000
+                    });
+                    navigate('/dashboard/my-apply-list')
+                }
+            })
+
+    }
 
     
 
@@ -38,7 +62,7 @@ const MyApplications = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/all-applications/${id}`)
+                axios.delete(`${import.meta.env.VITE_API_URL}/all-applications/${id}`)
                     .then(res => {
                         console.log(res.data);
 
@@ -112,7 +136,7 @@ const MyApplications = () => {
                                             {/* radixUI modal */}
                                             <Dialog.Root>
                                                 <Dialog.Trigger asChild>
-                                                    <button onClick={() => { handleEdit(myApplication._id) }}><FaRegEdit /></button>
+                                                    <button ><FaRegEdit /></button>
                                                 </Dialog.Trigger>
                                                 <Dialog.Portal>
                                                     <Dialog.Overlay className="fixed inset-0 bg-blackA6 data-[state=open]:animate-overlayShow" />
@@ -122,7 +146,9 @@ const MyApplications = () => {
                                                         </Dialog.Title>
 
 
-                                                        <form className="card-body p-0">
+                                                        <form 
+                                                        onSubmit={(e) => { handleUpdateApplication(e, myApplication._id) }}
+                                                        className="card-body p-0">
 
                                                             {/* user email  */}
                                                             <div className="form-control">
@@ -138,7 +164,7 @@ const MyApplications = () => {
                                                                 <label className="label">
                                                                     <span className="label-text font-semibold text-lg">First Name</span>
                                                                 </label>
-                                                                <input type="text" name='first_name' defaultValue={'title'} className="input input-bordered" required />
+                                                                <input type="text" name='first_name' defaultValue={myApplication?.first_name} className="input input-bordered" required />
                                                             </div>   
 
                                                             {/* last name  */}
@@ -146,7 +172,7 @@ const MyApplications = () => {
                                                                 <label className="label">
                                                                     <span className="label-text font-semibold text-lg">Last Name</span>
                                                                 </label>
-                                                                <input type="text" name='last_name' defaultValue={'title'} className="input input-bordered" required />
+                                                                <input type="text" name='last_name' defaultValue={myApplication?.last_name} className="input input-bordered" required />
                                                             </div>       
 
 
@@ -155,7 +181,7 @@ const MyApplications = () => {
                                                                 <label className="label">
                                                                     <span className="label-text font-semibold text-lg">Contact Number</span>
                                                                 </label>
-                                                                <input type="text" name='contact_number' defaultValue={'title'} className="input input-bordered" required />
+                                                                <input type="text" name='contact_number' defaultValue={myApplication?.contact_number} className="input input-bordered" required />
                                                             </div>                           
 
 
@@ -164,7 +190,7 @@ const MyApplications = () => {
                                                                 <label className="label">
                                                                     <span className="label-text font-semibold text-lg">Address</span>
                                                                 </label>
-                                                                <input type="text" name='location' defaultValue={'address'} className="input input-bordered" required />
+                                                                <input type="text" name='address' defaultValue={myApplication?.address} className="input input-bordered" required />
                                                             </div>
 
 
