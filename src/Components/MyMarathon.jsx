@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 import { FaRegEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
@@ -15,28 +15,42 @@ import Swal from 'sweetalert2';
 const MyMarathon = () => {
 
     const { user } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const LoadedMarathons = useLoaderData()
     const [myMarathon, setMyMarathon] = useState(LoadedMarathons)
 
     const myMarathons = myMarathon.filter(marathon => marathon.email === user?.email)
-    
+
     const [marathonData, setMarathonData] = useState({})
-    const {title, image, distance, location, description, details} = marathonData
-    
-    
 
-    const handleEdit = id =>{
-        console.log(id);
 
-        axios.get(`http://localhost:5000/all-marathons/${id}`)
-        .then(res => {        
-            const Data = res.data
-            setMarathonData(Data)            
-        })
+    const handleUpdateMarathon = (e, id) => {
+        e.preventDefault()
+
+        const formData = new FormData(e.target)
+        const marathonUpdateInfo = Object.fromEntries(formData.entries())
+        console.log(marathonUpdateInfo, id);
+
+        axios.put(`http://localhost:5000/all-marathons/${id}`, marathonUpdateInfo)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",                        
+                        text: "Marathon Information Updated Successfully",
+                        showConfirmButton: false,
+                        timer: 4000
+                    });
+                    navigate('/dashboard/my-marathon-list')
+                }
+            })
+
     }
 
-    const handleDelete = id =>{
+
+    const handleDelete = id => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -45,25 +59,25 @@ const MyMarathon = () => {
             confirmButtonColor: "btn btn-success",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
                 axios.delete(`http://localhost:5000/all-marathons/${id}`)
-                .then(res => {
-                    console.log(res.data);
+                    .then(res => {
+                        console.log(res.data);
 
-                    if(res.data.deletedCount > 0){
-                        Swal.fire({
-                            title: "Deleted!",
-                            text: "Your file has been deleted.",
-                            icon: "success"
-                          });
-                        
-                          const remainingMarathon = myMarathon.filter(marathon => marathon._id !== id)
-                          setMyMarathon(remainingMarathon)
-                    }                   
-                })              
+                        if (res.data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+
+                            const remainingMarathon = myMarathon.filter(marathon => marathon._id !== id)
+                            setMyMarathon(remainingMarathon)
+                        }
+                    })
             }
-          });
+        });
     }
 
     return (
@@ -105,9 +119,9 @@ const MyMarathon = () => {
                                         <p>{format(mymarathon.eventStartDate, 'MMMM do, yyyy')}</p>
                                         <p className="dark:text-gray-600">Friday</p>
                                     </td>
-                                    <td className="p-3">
-                                        <p>{mymarathon.title}</p>
-                                        <p className="dark:text-gray-600">Tuesday</p>
+                                    <td className="p-3 text-center">
+                                        <p>{mymarathon.TotalRegistrationCount}</p>
+
                                     </td>
                                     <td className="p-3 text-center">
                                         <p>{mymarathon.location}</p>
@@ -118,7 +132,7 @@ const MyMarathon = () => {
                                             {/* radixUI modal */}
                                             <Dialog.Root>
                                                 <Dialog.Trigger asChild>
-                                                    <button onClick={()=>{handleEdit(mymarathon._id)}}><FaRegEdit /></button>
+                                                    <button><FaRegEdit /></button>
                                                 </Dialog.Trigger>
                                                 <Dialog.Portal>
                                                     <Dialog.Overlay className="fixed inset-0 bg-blackA6 data-[state=open]:animate-overlayShow" />
@@ -128,7 +142,10 @@ const MyMarathon = () => {
                                                         </Dialog.Title>
 
 
-                                                        <form className="card-body p-0">
+                                                        <form
+                                                            onSubmit={(e) => { handleUpdateMarathon(e, mymarathon._id) }}
+
+                                                            className="card-body p-0">
 
                                                             {/* user email  */}
                                                             <div className="form-control">
@@ -144,7 +161,7 @@ const MyMarathon = () => {
                                                                 <label className="label">
                                                                     <span className="label-text font-semibold text-lg">Marathon Title</span>
                                                                 </label>
-                                                                <input type="text" name='title' defaultValue={title} className="input input-bordered" required />
+                                                                <input type="text" name='title' defaultValue={mymarathon?.title} className="input input-bordered" required />
                                                             </div>
 
                                                             {/* image url  */}
@@ -152,36 +169,36 @@ const MyMarathon = () => {
                                                                 <label className="label">
                                                                     <span className="label-text font-semibold text-lg"> Marathon Image</span>
                                                                 </label>
-                                                                <input type="text" name='image' defaultValue={image} className="input input-bordered" required />
+                                                                <input type="text" name='image' defaultValue={mymarathon?.image} className="input input-bordered" required />
                                                             </div>
 
 
                                                             <div className=' lg:flex gap-5'>
                                                                 {/* start reg date  */}
                                                                 {/* <div className="form-control lg:w-1/2">
-                                                                                <label className="label">
-                                                                                    <span className="label-text font-semibold text-lg">Start Registration Date</span>
-                                                                                </label>
-                                                                                <DatePicker
-                                                                                    className='input input-bordered w-full'
-                                                                                    selected={regStartDate}
-                                                                                    onChange={(date) => setRegStartDate(date)}
-                                                                                    required
-                                                                                />
-                                                                            </div> */}
+                                                                    <label className="label">
+                                                                        <span className="label-text font-semibold text-lg">Start Registration Date</span>
+                                                                    </label>
+                                                                    <DatePicker
+                                                                        className='input input-bordered w-full'
+                                                                        selected={regStartDate}
+                                                                        onChange={(date) => setRegStartDate(date)}
+                                                                        required
+                                                                    />
+                                                                </div> */}
 
                                                                 {/* end reg date  */}
                                                                 {/* <div className="form-control lg:w-1/2">
-                                                                                <label className="label">
-                                                                                    <span className="label-text font-semibold text-lg">End Registration Date</span>
-                                                                                </label>
-                                                                                <DatePicker
-                                                                                    className='input input-bordered w-full'
-                                                                                    selected={regEndDate}
-                                                                                    onChange={(date) => setRegEndDate(date)}
-                                                                                    required
-                                                                                />
-                                                                            </div> */}
+                                                                    <label className="label">
+                                                                        <span className="label-text font-semibold text-lg">End Registration Date</span>
+                                                                    </label>
+                                                                    <DatePicker
+                                                                        className='input input-bordered w-full'
+                                                                        selected={regEndDate}
+                                                                        onChange={(date) => setRegEndDate(date)}
+                                                                        required
+                                                                    />
+                                                                </div> */}
                                                             </div>
 
 
@@ -189,24 +206,24 @@ const MyMarathon = () => {
 
                                                                 {/* marathon strat date  */}
                                                                 {/* <div className="form-control lg:w-1/2">
-                                                                                <label className="label">
-                                                                                    <span className="label-text font-semibold text-lg">Marathon Start Date</span>
-                                                                                </label>
-                                                                                <DatePicker
-                                                                                    className='input input-bordered w-full'
-                                                                                    selected={eventStartDate}
-                                                                                    onChange={(date) => setEventStartDate(date)}
-                                                                                    required
-                                                                                />
-                                                                            </div>
-                                                        */}
+                                                                    <label className="label">
+                                                                        <span className="label-text font-semibold text-lg">Marathon Start Date</span>
+                                                                    </label>
+                                                                    <DatePicker
+                                                                        className='input input-bordered w-full'
+                                                                        selected={eventStartDate}
+                                                                        onChange={(date) => setEventStartDate(date)}
+                                                                        required
+                                                                    />
+                                                                </div>
+                                            */}
                                                                 {/* running distance  */}
                                                                 <div className="form-control lg:w-1/2">
                                                                     <label className="label">
                                                                         <span className="label-text font-semibold text-lg">Running distance
                                                                         </span>
                                                                     </label>
-                                                                    <select name='distance' defaultValue={distance} class="w-full input appearance-auto border border-gray-300 rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent">
+                                                                    <select name='distance' defaultValue={mymarathon?.distance} class="w-full input appearance-auto border border-gray-300 rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent">
                                                                         <option value="25k">25k</option>
                                                                         <option value="10k">10k</option>
                                                                         <option value="3k">3k</option>
@@ -219,7 +236,7 @@ const MyMarathon = () => {
                                                                 <label className="label">
                                                                     <span className="label-text font-semibold text-lg">Location</span>
                                                                 </label>
-                                                                <input type="text" name='location' defaultValue={location} className="input input-bordered" required />
+                                                                <input type="text" name='location' defaultValue={mymarathon?.location} className="input input-bordered" required />
                                                             </div>
 
 
@@ -228,7 +245,7 @@ const MyMarathon = () => {
                                                                 <label className="label">
                                                                     <span className="label-text font-semibold text-lg">Description</span>
                                                                 </label>
-                                                                <textarea name='description' className="textarea textarea-bordered" defaultValue={description}></textarea>
+                                                                <textarea name='description' className="textarea textarea-bordered" defaultValue={mymarathon?.description}></textarea>
                                                             </div>
 
 
@@ -237,12 +254,12 @@ const MyMarathon = () => {
                                                                 <label className="label">
                                                                     <span className="label-text font-semibold text-lg">Details</span>
                                                                 </label>
-                                                                <textarea name='details' className="textarea textarea-bordered" defaultValue={details}></textarea>
+                                                                <textarea name='details' className="textarea textarea-bordered" defaultValue={mymarathon?.details}></textarea>
                                                             </div>
 
                                                             {/* submit button  */}
                                                             <div className="form-control mt-6">
-                                                                <button className="btn bg-cyan-600 text-lg font-semibold text-white">Update</button>
+                                                                <button type='submit' className="btn bg-cyan-600 text-lg font-semibold text-white">Update</button>
                                                             </div>
                                                         </form>
 
@@ -261,7 +278,7 @@ const MyMarathon = () => {
                                         </span>
 
                                         <span className="px-3 py-1 font-semibold rounded-md text-red-600 dark:bg-violet-600 dark:text-gray-50">
-                                            <button onClick={()=>{handleDelete(mymarathon._id)}}><MdDelete /></button>
+                                            <button onClick={() => { handleDelete(mymarathon._id) }}><MdDelete /></button>
                                         </span>
                                     </td>
 

@@ -1,0 +1,53 @@
+#app {
+    height: 100%;
+  }
+  html,
+  body {
+    position: relative;
+    height: 100%;
+  }
+  
+   
+  .swiper {
+    width: 100%;
+    height: 450px;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+
+.bg{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;    
+}
+
+
+.one{
+    background-image: url('./assets/marathon1.jpg');
+}
+.two{
+    background-image: url('./assets/marathon2.jpg');
+}
+.three{
+    background-image: url('./assets/marathon3.jpg');
+}
+.four{
+    background-image: url('./assets/marathon4.jpg');
+}

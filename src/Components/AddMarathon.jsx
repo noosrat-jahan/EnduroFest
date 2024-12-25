@@ -25,8 +25,8 @@ const AddMarathon = () => {
         formData.set("regStartDate", regStartDate)
         formData.set("regEndDate", regEndDate)
         formData.set("eventStartDate", eventStartDate)
-        formData.set("Created At:", new Date().toLocaleString('en-US'))
-        formData.set("Total Registration Count", 0)
+        formData.set("CreatedAt:", new Date().toLocaleString('en-US'))
+        formData.set("TotalRegistrationCount", 0)
 
         const MarathonsInfo = Object.fromEntries(formData.entries());
         console.log(MarathonsInfo);

@@ -5,6 +5,7 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
+
 const MarathonRegister = () => {
     console.log(new Date().toLocaleString('en-US'));
 
@@ -13,11 +14,13 @@ const MarathonRegister = () => {
     const navigate = useNavigate()
 
     const Marathondetails = useLoaderData()
+    // console.log(parseInt(Marathondetails.TotalRegistrationCount) + 1);
 
     const handleRegisterMarathon = e => {
         e.preventDefault()
 
         const formData = new FormData(e.target)
+        formData.set("TotalRegistrationCount", Marathondetails.TotalRegistrationCount)
         const applicationDetails = Object.fromEntries(formData.entries())
         console.log(applicationDetails);
 
@@ -31,9 +34,11 @@ const MarathonRegister = () => {
                         title: "Congratulations",
                         text: "Application for marathon is successful",
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 4000
                     });
                     navigate('/dashboard/my-apply-list')
+
+                   console.log(Marathondetails.TotalRegistrationCount = parseInt(Marathondetails.TotalRegistrationCount) + 1)
                 }
             })
             .catch(err => {
@@ -58,7 +63,7 @@ const MarathonRegister = () => {
                         <label className="label">
                             <span className="label-text font-semibold text-lg"> Email</span>
                         </label>
-                        <input type="email" name='email' defaultValue={user?.email} readOnly className="input input-bordered" required />
+                        <input type="email" name='applicantEmail' defaultValue={user?.email} readOnly className="input input-bordered" required />
                     </div>
 
 
@@ -84,7 +89,7 @@ const MarathonRegister = () => {
                         <label className="label">
                             <span className="label-text font-semibold text-lg">First Name</span>
                         </label>
-                        <input type="text" name='first-name' placeholder="First Name" className="input input-bordered" required />
+                        <input type="text" name='first_name' placeholder="First Name" className="input input-bordered" required />
                     </div>
 
                     {/* Last  Name  */}
@@ -92,7 +97,7 @@ const MarathonRegister = () => {
                         <label className="label">
                             <span className="label-text font-semibold text-lg">Last  Name</span>
                         </label>
-                        <input type="text" name='last-name' placeholder="Last Name" className="input input-bordered" required />
+                        <input type="text" name='last_name' placeholder="Last Name" className="input input-bordered" required />
                     </div>
 
 
@@ -101,7 +106,7 @@ const MarathonRegister = () => {
                         <label className="label">
                             <span className="label-text font-semibold text-lg">Contact Number</span>
                         </label>
-                        <input type="text" name='contact-number' placeholder="Contact Number" className="input input-bordered" required />
+                        <input type="text" name='contact_number' placeholder="Contact Number" className="input input-bordered" required />
                     </div>
 
 
