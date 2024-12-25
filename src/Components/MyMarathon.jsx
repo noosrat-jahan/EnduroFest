@@ -10,13 +10,16 @@ import { Cross2Icon } from "@radix-ui/react-icons";
 import "../index.css";
 import DatePicker from 'react-datepicker';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const MyMarathon = () => {
 
     const { user } = useContext(AuthContext)
 
     const LoadedMarathons = useLoaderData()
-    const myMarathons = LoadedMarathons.filter(marathon => marathon.email === user?.email)
+    const [myMarathon, setMyMarathon] = useState(LoadedMarathons)
+
+    const myMarathons = myMarathon.filter(marathon => marathon.email === user?.email)
     
     const [marathonData, setMarathonData] = useState({})
     const {title, image, distance, location, description, details} = marathonData
@@ -31,6 +34,36 @@ const MyMarathon = () => {
             const Data = res.data
             setMarathonData(Data)            
         })
+    }
+
+    const handleDelete = id =>{
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "btn btn-success",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:5000/all-marathons/${id}`)
+                .then(res => {
+                    console.log(res.data);
+
+                    if(res.data.deletedCount > 0){
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                          });
+                        
+                          const remainingMarathon = myMarathon.filter(marathon => marathon._id !== id)
+                          setMyMarathon(remainingMarathon)
+                    }                   
+                })              
+            }
+          });
     }
 
     return (
@@ -228,7 +261,7 @@ const MyMarathon = () => {
                                         </span>
 
                                         <span className="px-3 py-1 font-semibold rounded-md text-red-600 dark:bg-violet-600 dark:text-gray-50">
-                                            <button><MdDelete /></button>
+                                            <button onClick={()=>{handleDelete(mymarathon._id)}}><MdDelete /></button>
                                         </span>
                                     </td>
 

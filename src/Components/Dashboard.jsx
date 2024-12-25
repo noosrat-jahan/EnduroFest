@@ -1,9 +1,12 @@
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
 const Dashboard = () => {
+
+    const navigation = useNavigation()
+
     return (
         <div>
             <Navbar></Navbar>
@@ -14,7 +17,13 @@ const Dashboard = () => {
                     <NavLink to="/dashboard/my-apply-list" className='bg-amber-100 py-1 rounded-md'>My Apply List</NavLink>
                 </div>
                 <div className='lg:col-span-3'>
-                    <Outlet></Outlet>
+                    {
+                        navigation.state === "loading" ?
+                            <div className='flex justify-center'>
+                                <span className=" loading loading-spinner text-pink-700 mt-10 w-10 mx-auto"></span>
+                            </div>
+                            : <Outlet></Outlet>
+                    }
                 </div>
             </div>
             <Footer></Footer>

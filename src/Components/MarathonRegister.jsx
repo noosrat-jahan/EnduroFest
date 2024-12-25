@@ -33,7 +33,7 @@ const MarathonRegister = () => {
                         showConfirmButton: false,
                         timer: 3000
                     });
-                    navigate('/dashboard/my-marathon-list')
+                    navigate('/dashboard/my-apply-list')
                 }
             })
             .catch(err => {
