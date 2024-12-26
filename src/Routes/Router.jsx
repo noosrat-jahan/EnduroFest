@@ -71,12 +71,12 @@ const Router = createBrowserRouter([
       {
         path: "/dashboard/my-marathon-list",
         element: <PrivateRoute><MyMarathon></MyMarathon></PrivateRoute>,
-        loader: ()=>fetch(`${import.meta.env.VITE_API_URL}/all-marathons`)        
+          
       },
       {
         path: "/dashboard/my-apply-list",
         element: <PrivateRoute><MyApplications></MyApplications></PrivateRoute>,
-        loader: ()=>fetch(`${import.meta.env.VITE_API_URL}/all-applications`)
+        
       },
     ]
   },

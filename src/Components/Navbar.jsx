@@ -4,8 +4,21 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 
+import { faMoon } from "@fortawesome/free-regular-svg-icons";
+import { IoMoon } from "react-icons/io5";
+import { IoSunny } from "react-icons/io5";
+import { IconContext } from "react-icons";
+
 
 const Navbar = () => {
+
+    const [dark, setDark] = React.useState(false);
+
+    const darkModeHandler = () => {
+        setDark(!dark);
+        document.body.classList.toggle("dark");
+    }
+
 
     const { user, signoutUser } = useContext(AuthContext)
     const naviagte = useNavigate()
@@ -31,7 +44,7 @@ const Navbar = () => {
     return (
         <div className="navbar bg-base-100 bg-gradient-to-r from-amber-50 to-purple-100 px-4 mx-auto">
             <div className="navbar-start">
-                {/* <div className="dropdown">
+                <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -48,47 +61,33 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        <li><a>Item 1</a></li>
-                        <li>
-                            <a>Parent</a>
-                            <ul className="p-2">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
-                            </ul>
-                        </li>
-                        <li><a>Item 3</a></li>
-                    </ul>
-                </div> */}
-                <Link to="/"><img src={logo} alt="" className='w-1/3 ' /></Link>
-            </div>
-            
-            {/* <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
-                    <li><a>Item 1</a></li>
-                    <li>
-                        <details>
-                            <summary>Parent</summary>
-                            <ul className="p-2">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
-                            </ul>
-                        </details>
-                    </li>
-                    <li><a>Item 3</a></li>
-                </ul>
-            </div> */}
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-48 space-y-3 p-4 shadow">
+                        <Link to="/all-marathons" className=' bg-[#3E5879] text-white rounded-md lg:px-3 px-1.5 py-2 lg:text-xl text-xs font-bold'>Marathons</Link>
 
-            <div className="navbar-end gap-5">
-                <Link to="/all-marathons" className=' bg-[#3E5879] text-white rounded-md px-3 py-2 lg:text-xl text-sm font-bold'>Marathons</Link>
+                        {
+                            user &&
+                            <Link to="/dashboard/my-marathon-list" className='bg-[#3E5879] text-white  rounded-md lg:px-3 px-2 py-2 lg:text-xl text-xs font-bold'>Dashboard</Link>
+                        }
+                    </ul>
+                </div>
+                <Link to="/"><img src={logo} alt="" className='w-1/2 lg:1/3 ' /></Link>
+            </div>
+
+
+            <div className="navbar-end lg:pr-6 lg:flex  gap-2">
+
+                <ul className="menu hidden lg:flex menu-horizontal px-1">
+                    <Link to="/all-marathons" className=' bg-[#3E5879] text-white rounded-md lg:px-3 px-1.5 py-2 lg:text-xl text-xs font-bold'>Marathons</Link>
+                </ul>
+
                 {
                     user ?
-                        <div className='flex gap-3 items-center'>
-                            <Link to="/dashboard/my-marathon-list" className='bg-[#3E5879] text-white  rounded-md px-3 py-2 lg:text-xl text-sm font-bold'>Dashboard</Link>
+                        <div className='flex gap-5 items-center'>
+                            <Link to="/dashboard/my-marathon-list" className='bg-[#3E5879] text-white  rounded-md lg:px-3 px-2 py-2 lg:text-xl text-xs font-bold'>Dashboard</Link>
 
-                            <h1>{user?.email}</h1>
+                            {/* <h1>{user?.email}</h1> */}
 
-                            <div className="dropdown dropdown-hover">
+                            <div className="dropdown w-16 h-16 block dropdown-hover">
                                 <div tabIndex={0} role="button">
                                     <img
                                         src={user?.photoURL}
@@ -103,10 +102,23 @@ const Navbar = () => {
                         </div>
                         :
                         <div className='flex gap-3'>
-                            <Link to="/login" className='bg-[#36388b] lg:px-4 px-3 py-2 rounded-md text-white text-xs lg:text-lg font-bold'>Login</Link>
-                            <Link to="/register" className='bg-pink-500 lg:px-4 px-3 py-2 rounded-md text-white font-bold text-xs lg:text-lg'>Register</Link>
+                            <Link to="/login" className='bg-[#36388b] lg:px-4 px-2 py-2 rounded-md text-white text-xs lg:text-lg font-bold'>Login</Link>
+                            <Link to="/register" className='bg-pink-500 lg:px-4 px-2 py-2 rounded-md text-white font-bold text-xs lg:text-lg'>Register</Link>
                         </div>
                 }
+
+                <div>
+                    <button onClick={() => darkModeHandler()}
+                        className=' text-xl bg-blue-100 p-2 dark:text-black rounded-full ml-5'>
+                        {
+
+                            dark && <IoSunny />
+                        }
+                        {
+                            !dark && <IoMoon />
+                        }
+                    </button>
+                </div>
             </div>
         </div>
     );

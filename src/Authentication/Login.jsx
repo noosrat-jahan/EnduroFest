@@ -5,6 +5,8 @@ import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { toast, ToastContainer } from 'react-toastify';
 
+import login from "../assets/authentication-74.png"
+
 const Login = () => {
 
     const { setUser, LoginUser, googleSignIn } = useContext(AuthContext)
@@ -66,7 +68,8 @@ const Login = () => {
             })
     }
     return (
-        <div>
+        <div className='flex flex-col-reverse lg:flex-row justify-center items-center gap-3 w-11/12 mx-auto'>
+            <img src={login} alt="" className='lg:w-1/3' />
             <div className="card bg-base-100 w-full font-poppins mx-auto max-w-md py-6 px-10 my-10 shrink-0 shadow-2xl">
                 <h1 className='text-3xl text-center font-semibold text-[#217276]'>Sign In</h1>
                 <form onSubmit={handleLogin} className="card-body p-0">

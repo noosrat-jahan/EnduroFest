@@ -19,7 +19,7 @@ const MarathonCard = ({ marathon }) => {
                     <p className='flex items-center gap-2 font-semibold text-blue-800 '><LuCalendarDays /> Registration Start: {format(marathon.regStartDate, 'MMMM do, yyyy')}</p>
                     <p className='flex items-center gap-2 pb-10 font-semibold text-red-800 '><LuCalendarDays /> Registration Ends: {format(marathon.regEndDate, 'MMMM do, yyyy')}</p>
                     
-                    <Link to={`/all-marathons/${marathon._id}`} className='bg-yellow-300  font-bold font-roboto uppercase px-5 w-1/2  py-2 flex items-center gap-3 rounded-sm'>See Details <GoArrowRight /></Link>
+                    <Link to={`/all-marathons/${marathon._id}`} className='bg-yellow-300  font-bold font-roboto uppercase px-5 lg:w-1/2 w-2/3  py-2 flex items-center gap-3 rounded-sm'>See Details <GoArrowRight /></Link>
                 </div>
             </div>
         </div>

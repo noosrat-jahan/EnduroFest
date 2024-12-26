@@ -6,6 +6,9 @@ import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { toast, ToastContainer } from 'react-toastify';
 
+
+import login from "../assets/authentication-74.png"
+
 const Register = () => {
 
     const { createNewUser, setUser, googleSignIn } = useContext(AuthContext)
@@ -81,7 +84,8 @@ const Register = () => {
     }
 
     return (
-        <div className='px-3'>
+        <div className='px-3 flex flex-col-reverse lg:flex-row justify-center items-start gap-3 w-11/12 mx-auto'>
+            <img src={login} alt="" className='w-1/3 lg:mt-14' />
             <div className="card bg-base-100 w-full px-10 py-6 my-10 font-poppins mx-auto max-w-md shrink-0 shadow-xl">
                 <h1 className='text-3xl font-semibold text-center text-[#217276]'>Sign Up</h1>
                 {
@@ -124,7 +128,7 @@ const Register = () => {
                         <button className="btn btn-accent text-lg">Register</button>
                     </div>
                     <div className="divider divider-neutral">OR</div>
-                    <div className="*:w-full space-y-2">
+                    <div className="lg:w-full flex justify-center space-y-2">
                         <button onClick={handleGoogleLogin} className="btn btn-outline text-[#22177A]"><span className='text-xl'><FcGoogle /></span> Continue with Google</button>
                     </div>
 

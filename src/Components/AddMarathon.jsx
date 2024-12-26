@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../Provider/AuthProvider';
+import { Helmet } from 'react-helmet';
 
 
 const AddMarathon = () => {
@@ -14,7 +15,7 @@ const AddMarathon = () => {
     const [regEndDate, setRegEndDate] = useState(new Date());
     const [eventStartDate, setEventStartDate] = useState(new Date());
 
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
     const navigate = useNavigate()
 
@@ -32,10 +33,10 @@ const AddMarathon = () => {
         console.log(MarathonsInfo);
 
         // axios post method
-        axios.post('${import.meta.env.VITE_API_URL}/all-marathons', MarathonsInfo)
+        axios.post(`${import.meta.env.VITE_API_URL}/all-marathons`, MarathonsInfo)
             .then(res => {
-                console.log("Data: ",res.data);
-                if(res.data.insertedId){
+                console.log("Data: ", res.data);
+                if (res.data.insertedId) {
                     Swal.fire({
                         position: "center",
                         icon: "success",
@@ -43,8 +44,8 @@ const AddMarathon = () => {
                         text: "New Marathon Event is Added Successfully",
                         showConfirmButton: false,
                         timer: 3000
-                      });
-                    navigate('/all-marathons')
+                    });
+                    navigate('/my-marathon-list')
                 }
             })
             .catch(err => {
@@ -54,6 +55,11 @@ const AddMarathon = () => {
 
     return (
         <div>
+
+            <Helmet>
+                <title>AddMarathon - EnduroFest</title>
+            </Helmet>
+
             <div className="card bg-base-100 w-full mx-auto  border border-gray-200 shadow-md p-6 ">
                 {/* form heading */}
                 <h1 className='font-bold text-3xl text-cyan-700 font-roboto text-center'>Create A Marathon Event</h1>
@@ -66,7 +72,7 @@ const AddMarathon = () => {
                         <label className="label">
                             <span className="label-text font-semibold text-lg"> Email</span>
                         </label>
-                        <input type="email" name='email' defaultValue={user?.email} readOnly  className="input input-bordered" required />
+                        <input type="email" name='email' defaultValue={user?.email} readOnly className="input input-bordered" required />
                     </div>
 
 

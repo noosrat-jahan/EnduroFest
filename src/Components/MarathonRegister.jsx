@@ -4,12 +4,13 @@ import DatePicker from 'react-datepicker';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 
 const MarathonRegister = () => {
     console.log(new Date().toLocaleString('en-US'));
 
-    
+
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
 
@@ -24,7 +25,7 @@ const MarathonRegister = () => {
         const applicationDetails = Object.fromEntries(formData.entries())
         console.log(applicationDetails);
 
-        axios.post('${import.meta.env.VITE_API_URL}/all-applications', applicationDetails)
+        axios.post(`${import.meta.env.VITE_API_URL}/all-applications`, applicationDetails)
             .then(res => {
                 console.log('Data:', res.data);
                 if (res.data.insertedId) {
@@ -38,7 +39,7 @@ const MarathonRegister = () => {
                     });
                     navigate('/dashboard/my-apply-list')
 
-                   console.log(Marathondetails.TotalRegistrationCount = parseInt(Marathondetails.TotalRegistrationCount) + 1)
+                    console.log(Marathondetails.TotalRegistrationCount = parseInt(Marathondetails.TotalRegistrationCount) + 1)
                 }
             })
             .catch(err => {
@@ -48,15 +49,20 @@ const MarathonRegister = () => {
 
     return (
         <div>
+
+            <Helmet>
+                <title>Register Marathon - EnduroFest</title>
+            </Helmet>
+
             {/* form heading */}
-            <h1 className='font-bold text-2xl text-cyan-700 font-roboto mt-5 text-center uppercase'>Marathon Registration For</h1>
+            <h1 className='font-bold lg:text-2xl text-cyan-700 font-roboto mt-5 text-center uppercase'>Marathon Registration For</h1>
             <h1 className='font-bold text-2xl text-black font-roboto text-center uppercase'>{Marathondetails.title}</h1>
 
-            <div className="card bg-base-200 w-10/12 my-6 mx-auto  border border-gray-200 shadow-md p-6 ">
+            <div className="card bg-base-200 w-10/12 my-6 mx-auto  border border-gray-200 shadow-md lg:p-6 ">
 
 
                 {/* form element  */}
-                <form onSubmit={handleRegisterMarathon} className="card-body p-10 ">
+                <form onSubmit={handleRegisterMarathon} className="card-body p-2 lg:p-10 ">
 
                     {/* user email  */}
                     <div className="form-control">

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 
@@ -12,17 +12,29 @@ import "../index.css";
 import DatePicker from 'react-datepicker';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 
 const MyApplications = () => {
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
 
-    const LoadedApplications = useLoaderData()
+    // const LoadedApplications = useLoaderData()
 
-    const [AllApplications, setAllApplications] = useState(LoadedApplications)
+    // const [AllApplications, setAllApplications] = useState(LoadedApplications)
+    const [AllApplications, setAllApplications] = useState([])
 
-    const myApplications = AllApplications.filter(myApplication => myApplication.applicantEmail === user?.email)
+    // const myApplications = AllApplications.filter(myApplication => myApplication.applicantEmail === user?.email)
+
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_API_URL}/my-applications?email=${user?.email}`, { withCredentials: true })
+            .then(res => {
+                console.log(res.data);
+                setAllApplications(res.data)
+            })
+            .catch(err => { console.log('error', err); })
+
+    }, [user?.email])
 
 
     const handleUpdateApplication = (e, id) => {
@@ -38,7 +50,7 @@ const MyApplications = () => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
                         position: "center",
-                        icon: "success",                        
+                        icon: "success",
                         text: "Your Registration Information has been Updated Successfully",
                         showConfirmButton: false,
                         timer: 4000
@@ -49,7 +61,7 @@ const MyApplications = () => {
 
     }
 
-    
+
 
     const handleDelete = id => {
         Swal.fire({
@@ -82,7 +94,11 @@ const MyApplications = () => {
     }
     return (
         <div>
-          
+
+            <Helmet>
+                <title>MyApplication - EnduroFest</title>
+            </Helmet>
+
             {/* component used from mamba UI  */}
             <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
                 <h2 className="mb-4 text-2xl font-semibold leading-tight">My Applications</h2>
@@ -110,7 +126,7 @@ const MyApplications = () => {
                         <tbody>
 
                             {
-                                myApplications.map((myApplication, index) => <tr key={myApplication._id} className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
+                                AllApplications.map((myApplication, index) => <tr key={myApplication._id} className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
                                     <td className="p-3">
                                         <p>{index + 1}</p>
                                     </td>
@@ -146,9 +162,9 @@ const MyApplications = () => {
                                                         </Dialog.Title>
 
 
-                                                        <form 
-                                                        onSubmit={(e) => { handleUpdateApplication(e, myApplication._id) }}
-                                                        className="card-body p-0">
+                                                        <form
+                                                            onSubmit={(e) => { handleUpdateApplication(e, myApplication._id) }}
+                                                            className="card-body p-0">
 
                                                             {/* user email  */}
                                                             <div className="form-control">
@@ -165,7 +181,7 @@ const MyApplications = () => {
                                                                     <span className="label-text font-semibold text-lg">First Name</span>
                                                                 </label>
                                                                 <input type="text" name='first_name' defaultValue={myApplication?.first_name} className="input input-bordered" required />
-                                                            </div>   
+                                                            </div>
 
                                                             {/* last name  */}
                                                             <div className="form-control">
@@ -173,7 +189,7 @@ const MyApplications = () => {
                                                                     <span className="label-text font-semibold text-lg">Last Name</span>
                                                                 </label>
                                                                 <input type="text" name='last_name' defaultValue={myApplication?.last_name} className="input input-bordered" required />
-                                                            </div>       
+                                                            </div>
 
 
                                                             {/* contact number  */}
@@ -182,7 +198,7 @@ const MyApplications = () => {
                                                                     <span className="label-text font-semibold text-lg">Contact Number</span>
                                                                 </label>
                                                                 <input type="text" name='contact_number' defaultValue={myApplication?.contact_number} className="input input-bordered" required />
-                                                            </div>                           
+                                                            </div>
 
 
                                                             {/* applicant location  */}

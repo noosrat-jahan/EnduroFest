@@ -11,18 +11,33 @@ import "../index.css";
 import DatePicker from 'react-datepicker';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const MyMarathon = () => {
 
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
 
-    const LoadedMarathons = useLoaderData()
-    const [myMarathon, setMyMarathon] = useState(LoadedMarathons)
 
-    const myMarathons = myMarathon.filter(marathon => marathon.email === user?.email)
+    const [myMarathon, setMyMarathon] = useState([])
+
+    // const myMarathons = myMarathon.filter(marathon => marathon.email === user?.email)
 
     const [marathonData, setMarathonData] = useState({})
+
+    const [AllApplications, setAllApplications] = useState([])
+
+    // const myApplications = AllApplications.filter(myApplication => myApplication.applicantEmail === user?.email)
+
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_API_URL}/my-marathons?email=${user?.email}`, { withCredentials: true })
+            .then(res => {
+                console.log(res.data);
+                setMyMarathon(res.data)
+            })
+            .catch(err => { console.log('error', err); })
+
+    }, [user?.email])
 
 
     const handleUpdateMarathon = (e, id) => {
@@ -38,7 +53,7 @@ const MyMarathon = () => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
                         position: "center",
-                        icon: "success",                        
+                        icon: "success",
                         text: "Marathon Information is Updated Successfully",
                         showConfirmButton: false,
                         timer: 4000
@@ -82,6 +97,10 @@ const MyMarathon = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>MyMarathon - EnduroFest</title>
+            </Helmet>
+            
             {/* component used from mamba UI  */}
             <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
                 <h2 className="mb-4 text-2xl font-semibold leading-tight">My Created Marathons</h2>
@@ -108,7 +127,7 @@ const MyMarathon = () => {
                         <tbody>
 
                             {
-                                myMarathons.map((mymarathon, index) => <tr key={mymarathon._id} className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
+                                myMarathon.map((mymarathon, index) => <tr key={mymarathon._id} className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
                                     <td className="p-3">
                                         <p>{index + 1}</p>
                                     </td>
