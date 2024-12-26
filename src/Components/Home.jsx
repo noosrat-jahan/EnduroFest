@@ -6,6 +6,7 @@ import HomeMarathonCard from './HomeMarathonCard';
 import UpcomingEvents from './UpcomingEvents';
 import Review from './Review';
 import { Helmet } from 'react-helmet';
+import Sponsor from './Sponsor';
 
 
 const Home = () => {
@@ -45,6 +46,8 @@ const Home = () => {
             <UpcomingEvents></UpcomingEvents>
 
             <Review></Review>
+
+            <Sponsor></Sponsor>
         </div>
     );
 };

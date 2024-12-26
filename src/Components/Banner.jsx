@@ -21,10 +21,32 @@ const Banner = () => {
                 modules={[Navigation, Pagination, Mousewheel, Keyboard]}
                 className="mySwiper"
             >
-                <SwiperSlide className='bg one'></SwiperSlide>
-                <SwiperSlide className='bg two'></SwiperSlide>
-                <SwiperSlide className='bg three'></SwiperSlide>                
-                <SwiperSlide className='bg four'></SwiperSlide>                
+                <SwiperSlide className='bg one flex flex-col text-right '>
+                    <div className='lg:ml-52 space-y-3 pr-2'>
+                        <h1 className=' lg:text-7xl text-white font-bold text-right'>Join The <span className='text-yellow-200'>Race</span> <br /> Push Your <span className='text-yellow-200'>Limits</span></h1>
+                        <p className='text-white text-right font-bold'>EnduroFest Marathon 2025 is more than just a test of <br /> endurance—it’s a celebration of human determination and resilience.</p>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide className='bg two'>
+                <div className='lg:ml-52 space-y-3 pr-2'>
+                        <h1 className=' lg:text-7xl text-white font-bold text-right'>Join The <span className='text-yellow-200'>Race</span> <br /> Push Your <span className='text-yellow-200'>Limits</span></h1>
+                        <p className='text-white text-right font-bold'>EnduroFest Marathon 2025 is more than just a test of <br /> endurance—it’s a celebration of human determination and resilience.</p>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide className='bg three'>
+                <div className='lg:ml-52 space-y-3 pr-2'>
+                        <h1 className=' lg:text-7xl text-white font-bold text-right'>Join The <span className='text-yellow-200'>Race</span> <br /> Push Your <span className='text-yellow-200'>Limits</span></h1>
+                        <p className='text-white text-right font-bold'>EnduroFest Marathon 2025 is more than just a test of <br /> endurance—it’s a celebration of human determination and resilience.</p>
+                    </div>
+
+                </SwiperSlide>
+                <SwiperSlide className='bg four'>
+                <div className='lg:ml-52 space-y-3 pr-2'>
+                        <h1 className=' lg:text-7xl text-white font-bold text-right'>Join The <span className='text-yellow-200'>Race</span> <br /> Push Your <span className='text-yellow-200'>Limits</span></h1>
+                        <p className='text-white text-right font-bold'>EnduroFest Marathon 2025 is more than just a test of <br /> endurance—it’s a celebration of human determination and resilience.</p>
+                    </div>
+
+                </SwiperSlide>
             </Swiper>
         </div>
     );
