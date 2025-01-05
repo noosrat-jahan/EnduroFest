@@ -8,7 +8,7 @@ const Dashboard = () => {
     const navigation = useNavigation()
 
     return (
-        <div>
+        <div className=''>
             <Navbar></Navbar>
             <div className='min-h-[calc(100vh-200px)] my-10 mx-auto w-11/12 grid grid-cols-1 lg:grid-cols-4 gap-5'>
                 <div className='flex flex-col gap-3 col-span-1 shadow-md text-center font-bold text-lg font-roboto p-5 justify-center h-max rounded-md'>

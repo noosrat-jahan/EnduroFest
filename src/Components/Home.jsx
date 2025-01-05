@@ -20,6 +20,7 @@ const Home = () => {
     
     return (
         <div>
+            
             <Helmet>
                 <title>Home - EnduroFest</title>
             </Helmet>
