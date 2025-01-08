@@ -70,11 +70,11 @@ Run npm install to install project dependencies.
 
 ## Environment setup
 Create a .env file and put your environment variable there. Save the following variable:
-VITE_apiKey
-VITE_authDomain
-VITE_projectId
-VITE_storageBucket
-VITE_messagingSenderId
+VITE_apiKey,
+VITE_authDomain,
+VITE_projectId,
+VITE_storageBucket,
+VITE_messagingSenderId,
 VITE_appId
 
 ## Usage
