@@ -28,7 +28,7 @@ const Home = () => {
 
             <Banner></Banner>
             
-            <h1 className='text-6xl text-center my-10  text-[#441752] uppercase font-bebas px-3'>Discover Marathon Events</h1>
+            <h1 className='text-6xl text-center my-8  text-[#441752] uppercase font-bebas px-3'>Discover Marathon Events</h1>
 
             {
                 navigation.state === "loading" ?

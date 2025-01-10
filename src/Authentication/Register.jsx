@@ -87,7 +87,7 @@ const Register = () => {
         <div className='px-3 flex flex-col-reverse lg:flex-row justify-center items-start gap-3 w-11/12 mx-auto'>
             <img src={login} alt="" className='w-1/3 lg:mt-14' />
             <div className="card bg-base-100 w-full px-10 py-6 my-10 font-poppins mx-auto max-w-md shrink-0 shadow-xl">
-                <h1 className='text-3xl font-semibold text-center text-[#217276]'>Sign Up</h1>
+                <h1 className='text-3xl font-semibold text-center text-[#68b5fd]'>Sign Up</h1>
                 {
                     errormessage && <p className='text-red-600 my-4 text-center'>{errormessage}</p>
                 }
@@ -125,7 +125,7 @@ const Register = () => {
                         </span>
                     </div>
                     <div className="form-control mt-6">
-                        <button className="btn btn-accent text-lg">Register</button>
+                        <button className="btn bg-[#68b5fd] text-lg">Register</button>
                     </div>
                     <div className="divider divider-neutral">OR</div>
                     <div className="lg:w-full flex justify-center space-y-2">
@@ -133,7 +133,7 @@ const Register = () => {
                     </div>
 
                     <p className='mt-4 text-center'> Already Have an Account?
-                        <Link to="/login" className='text-[#26949a] ml-3 font-bold'>Login</Link> </p>
+                        <Link to="/login" className='text-[#68b5fd] ml-3 font-bold'>Login</Link> </p>
                 </form>
             </div>
             <ToastContainer />

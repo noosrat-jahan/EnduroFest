@@ -5,7 +5,7 @@ import { IoLocationSharp } from 'react-icons/io5';
 import { LuCalendarDays } from 'react-icons/lu';
 import { Link, useLoaderData } from 'react-router-dom';
 import { isWithinInterval } from "date-fns";
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import { Helmet } from 'react-helmet';
 
 const MarathonDetails = () => {
@@ -38,7 +38,7 @@ const MarathonDetails = () => {
             <Helmet>
                 <title>MarathonDetails - EnduroFest</title>
             </Helmet>
-            
+
             <div className='w-10/12 mx-auto my-10 space-y-4'>
                 <h1 className='text-3xl font-bold uppercase font-roboto mb-3'>{Marathondetails.title}</h1>
                 <p className='bg-amber-100 p-3  rounded-lg lg:w-1/3  lg:text-xl font-bold text-green-800'>Total Registration Count : {Marathondetails.TotalRegistrationCount}</p>
@@ -59,12 +59,17 @@ const MarathonDetails = () => {
                     to={`/all-marathons/${Marathondetails._id}/register`}
                     className="uppercase bg-[#00c282] text-white font-bold rounded-lg 
                             px-10 py-4"
-                    onClick={(e) => !isRegistrationOpen && e.preventDefault()}
+                    onClick={(e) => {
+                        if (!isRegistrationOpen) {
+                            e.preventDefault();
+                            toast.error('Registration is currently closed. Please check back later.', { position: 'top-center' });
+                        }
+                    }}
                 >
                     Register
                 </Link>
 
-
+                <ToastContainer></ToastContainer>
             </div>
         </div>
     );

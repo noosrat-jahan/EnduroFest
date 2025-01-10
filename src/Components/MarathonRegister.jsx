@@ -136,3 +136,17 @@ const MarathonRegister = () => {
 };
 
 export default MarathonRegister;
+
+
+
+// [
+//     { id: 2, name: "Item B", date: "2022-01-01" },
+//     { id: 1, name: "Item A", date: "2023-12-25" },
+//     { id: 3, name: "Item C", date: "2024-05-15" },
+//   ]
+//   const parseDate = (str) => {
+//     const [day, month, year] = str.split("-");
+//     return new Date(year, month - 1, day); // Month is 0-indexed
+//   };
+  
+//   data.sort((a, b) => parseDate(a.date) - parseDate(b.date));

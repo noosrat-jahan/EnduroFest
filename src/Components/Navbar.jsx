@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import logo from "../assets/Logoo.png"
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 
@@ -42,7 +42,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className="navbar bg-base-100 bg-gradient-to-r from-amber-50 to-purple-100 px-4 mx-auto">
+        <div className="navbar sticky top-0  shadow z-10 bg-base-100 bg-gradient-to-r from-pink-50 to-purple-100 px-4 py-3 mx-auto">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -62,28 +62,43 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-48 space-y-3 p-4 shadow">
-                        <Link to="/all-marathons" className=' bg-[#3E5879] text-white rounded-md lg:px-3 px-1.5 py-2 lg:text-xl text-xs font-bold'>Marathons</Link>
+
+                        <NavLink to="/all-marathons" className=' bg-[#3E5879] text-white rounded-md lg:px-3 px-1.5 py-2 lg:text-xl text-xs font-bold'>Marathons</NavLink>
 
                         {
                             user &&
-                            <Link to="/dashboard/my-marathon-list" className='bg-[#3E5879] text-white  rounded-md lg:px-3 px-2 py-2 lg:text-xl text-xs font-bold'>Dashboard</Link>
+                            <NavLink to="/dashboard/my-marathon-list" className='bg-[#3E5879] text-white  rounded-md lg:px-3 px-2 py-2 lg:text-xl text-xs font-bold'>Dashboard</NavLink>
                         }
+
+                        <NavLink to="/contact" className='bg-[#36388b] lg:px-4 px-2 py-2 rounded-md text-white text-xs lg:text-lg font-bold'>Contact</NavLink>
                     </ul>
                 </div>
-                <Link to="/"><img src={logo} alt="" className='w-1/2 lg:1/3 ' /></Link>
+                <Link to="/"><img src={logo} alt="" className='w-1/2 lg:w-1/3 ' /></Link>
             </div>
 
 
-            <div className="navbar-end lg:pr-6 lg:flex  gap-2">
+            <div className="navbar-center lg:pr-6 lg:flex  gap-2">
 
-                <ul className="menu hidden lg:flex menu-horizontal px-1">
-                    <Link to="/all-marathons" className=' bg-[#3E5879] text-white rounded-md lg:px-3 px-1.5 py-2 lg:text-xl text-xs font-bold'>Marathons</Link>
+                <ul className="menu hidden lg:flex menu-horizontal px-1 space-x-4">
+                    <NavLink to="/" className=' bg-[#36388b] text-white rounded-md lg:px-3 px-1.5 py-2 lg:text-xl text-xs font-bold'>Home</NavLink>
+                    
+                    <NavLink to="/all-marathons" className=' bg-[#36388b] text-white rounded-md lg:px-3 px-1.5 py-2 lg:text-xl text-xs font-bold'>Marathons</NavLink>
+
+                       {
+                            user &&
+                            <NavLink to="/dashboard/my-marathon-list" className='bg-[#36388b] text-white  rounded-md lg:px-3 px-2 py-2 lg:text-xl text-xs font-bold'>Dashboard</NavLink>
+                        }
+
+                        <NavLink to="/contact" className='bg-[#36388b] lg:px-4 px-2 py-2 rounded-md text-white text-xs lg:text-lg font-bold'>Contact</NavLink>
+                        <NavLink to="/about" className='bg-[#36388b] lg:px-4 px-2 py-2 rounded-md text-white text-xs lg:text-lg font-bold'>About</NavLink>
                 </ul>
+
+
 
                 {
                     user ?
                         <div className='flex gap-5 items-center'>
-                            <Link to="/dashboard/my-marathon-list" className='bg-[#3E5879] text-white  rounded-md lg:px-3 px-2 py-2 lg:text-xl text-xs font-bold'>Dashboard</Link>
+                            {/* <NavLink to="/dashboard/my-marathon-list" className='bg-[#36388b] text-white  rounded-md lg:px-3 px-2 py-2 lg:text-xl text-xs font-bold'>Dashboard</NavLink> */}
 
                             {/* <h1>{user?.email}</h1> */}
 
@@ -102,10 +117,11 @@ const Navbar = () => {
                         </div>
                         :
                         <div className='flex gap-3'>
-                            <Link to="/login" className='bg-[#36388b] lg:px-4 px-2 py-2 rounded-md text-white text-xs lg:text-lg font-bold'>Login</Link>
+                            <Link to="/login" className='bg-[#217276] lg:px-4 px-2 py-2 rounded-md text-white text-xs lg:text-lg font-bold'>Login</Link>
                             <Link to="/register" className='bg-pink-500 lg:px-4 px-2 py-2 rounded-md text-white font-bold text-xs lg:text-lg'>Register</Link>
                         </div>
                 }
+
 
                 <div>
                     <button onClick={() => darkModeHandler()}

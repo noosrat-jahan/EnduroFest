@@ -6,7 +6,7 @@ import logo from "../assets/Logoo.png"
 const Footer = () => {
     return (
         <div>
-            <footer className="bg-[#3E5879] font-poppins text-white py-14">
+            <footer className="bg-[#36388b] font-poppins text-white py-14">
                 <div className="container mx-auto px-5 md:px-10">
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10">
                         {/* Logo & Description */}
@@ -24,22 +24,22 @@ const Footer = () => {
                         <div>
                             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
                             <ul>
-                                <li><a href="/" className="text-white-400 hover:text-gray-300">Home</a></li>
-                                <li><a href="/about" className="text-white-400 hover:text-gray-300">About EnduroFest</a></li>
-                                <li><a href="/events" className="text-white-400 hover:text-gray-300">Upcoming Events</a></li>
-                                <li><a href="/register" className="text-white-400 hover:text-gray-300">Marathon Registration</a></li>
-                                <li><a href="/contact" className="text-white-400 hover:text-gray-300">Contact Us</a></li>
+                                <li><a className="text-white-400 ">Home</a></li>
+                                <li><a className="text-white-400 ">About EnduroFest</a></li>
+                                <li><a className="text-white-400 ">Upcoming Events</a></li>
+                                <li><a className="text-white-400 ">Marathon Registration</a></li>
+                                <li><a className="text-white-400 ">Contact Us</a></li>
                             </ul>
                         </div>
 
                         <div>
                             <h3 className="text-xl font-bold mb-4">Resources</h3>
                             <ul>
-                                <li><a href="/faqs" className="text-white-400 hover:text-gray-300">FAQs</a></li>
-                                <li><a href="/training-tips" className="text-white-400 hover:text-gray-300">Training Tips</a></li>
-                                <li><a href="/sponsorship" className="text-white-400 hover:text-gray-300">Sponsorship Opportunities</a></li>
-                                <li><a href="/volunteer" className="text-white-400 hover:text-gray-300">Volunteer Sign-Up</a></li>
-                                <li><a href="/privacy-policy" className="text-white-400 hover:text-gray-300">Privacy Policy</a></li>
+                                <li><a className="text-white-400 ">FAQs</a></li>
+                                <li><a className="text-white-400 ">Training Tips</a></li>
+                                <li><a className="text-white-400 ">Sponsorship Opportunities</a></li>
+                                <li><a className="text-white-400 ">Volunteer Sign-Up</a></li>
+                                <li><a className="text-white-400 ">Privacy Policy</a></li>
                             </ul>
                         </div>
 

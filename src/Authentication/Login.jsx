@@ -71,7 +71,7 @@ const Login = () => {
         <div className='flex flex-col-reverse lg:flex-row justify-center items-center gap-3 w-11/12 mx-auto'>
             <img src={login} alt="" className='lg:w-1/3' />
             <div className="card bg-base-100 w-full font-poppins mx-auto max-w-md py-6 px-10 my-10 shrink-0 shadow-2xl">
-                <h1 className='text-3xl text-center font-semibold text-[#217276]'>Sign In</h1>
+                <h1 className='text-3xl text-center font-semibold text-[#68b5fd]'>Sign In</h1>
                 <form onSubmit={handleLogin} className="card-body p-0">
                     <div className="form-control">
                         <label className="label">
@@ -85,12 +85,12 @@ const Login = () => {
                         </label>
                         <input type="password" name='password' placeholder="Password" className="input input-bordered" required />
                         <label className="label flex justify-end">
-                            <a href="#" className="label-text-alt link link-hover mt-2  text-[#26949a] font-bold">Forgot password?</a>
+                            <a href="#" className="label-text-alt link link-hover mt-2  text-[#68b5fd] font-semibold">Forgot password?</a>
                         </label>
                     </div>
 
                     <div className="form-control mt-2">
-                        <button className="btn btn-accent text-lg">Login</button>
+                        <button className="btn bg-[#68b5fd] text-lg">Login</button>
                     </div>
                     <div className="divider divider-neutral">OR</div>
                     <div className="*:w-full space-y-2">
@@ -98,7 +98,7 @@ const Login = () => {
                     </div>
 
                     <p className='mt-4 text-center'> Don't Have an Account?
-                        <Link to="/register" className='text-[#26949a] ml-3 font-bold'>Sign Up</Link> </p>
+                        <Link to="/register" className='text-[#68b5fd] ml-3 font-bold'>Sign Up</Link> </p>
                 </form>
             </div>
             <ToastContainer></ToastContainer>

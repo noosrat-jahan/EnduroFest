@@ -101,6 +101,9 @@ const MyApplications = () => {
 
             {/* component used from mamba UI  */}
             <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
+                {
+                    AllApplications.length < 1 && <h1 className='text-center font-bold text-red-500 text-2xl mb-3'>You have zero application now.</h1>
+                }
                 <h2 className="mb-4 text-2xl font-semibold leading-tight">My Applications</h2>
                 <div className="overflow-x-auto bg-gray-50">
                     <table className="min-w-full text-sm">
