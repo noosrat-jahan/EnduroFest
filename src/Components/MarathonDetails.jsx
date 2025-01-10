@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet';
 const MarathonDetails = () => {
 
     const Marathondetails = useLoaderData()
-    console.log(Marathondetails);
+    console.log(typeof Marathondetails.TotalRegistrationCount);
 
     const [isRegistrationOpen, setIsRegistrationOpen] = useState(false)
 

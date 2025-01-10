@@ -1,20 +1,22 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 import DatePicker from 'react-datepicker';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet';
 
 
 const MarathonRegister = () => {
-    console.log(new Date().toLocaleString('en-US'));
+    // console.log(new Date().toLocaleString('en-US'));
 
 
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
 
     const Marathondetails = useLoaderData()
+    const {id} = useParams()
+    // console.log(id);
     // console.log(parseInt(Marathondetails.TotalRegistrationCount) + 1);
 
     const handleRegisterMarathon = e => {
@@ -37,14 +39,23 @@ const MarathonRegister = () => {
                         showConfirmButton: false,
                         timer: 4000
                     });
-                    navigate('/dashboard/my-apply-list')
 
-                    console.log(Marathondetails.TotalRegistrationCount = parseInt(Marathondetails.TotalRegistrationCount) + 1)
+                    axios.patch(`${import.meta.env.VITE_API_URL}/all-marathons/${id}`, applicationDetails)
+            .then(res => {
+                console.log('Data:', res.data);
+                navigate('/dashboard/my-apply-list')
+            })
+                    
+
                 }
             })
             .catch(err => {
                 console.log("Error: ", err);
             })
+
+
+        
+            
     }
 
     return (
