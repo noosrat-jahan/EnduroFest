@@ -21,7 +21,6 @@ const HomeMarathonCard = ({ event, marathon }) => {
         const eventTime = new Date(event).getTime();
         const currentTime = Date.now();
         const timeLeft = eventTime - currentTime;
-
         return timeLeft;
     };
 
