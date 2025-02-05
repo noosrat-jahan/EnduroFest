@@ -1,5 +1,7 @@
 # Project Name: EnduroFest
 
+![Alt text](src/assets/projectdemo.png)
+
 # Project Overview
 
 EnduroFest is a marathon management system website built by react which enables organizers to create marathon events and manage events. Participants can view detailed information of specific marathon and also apply and update their application.
