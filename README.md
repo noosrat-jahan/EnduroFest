@@ -78,7 +78,7 @@ VITE_messagingSenderId,
 VITE_appId
 
 ## Usage
-Run npm run dev to run the project locally.
+Run `npm run dev` to run the project locally.
 
 # Links: 
 
