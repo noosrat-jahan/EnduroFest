@@ -19,7 +19,6 @@ const MyMarathon = () => {
 
   const [myMarathon, setMyMarathon] = useState([]);
   const [regEndDate, setRegEndDate] = useState(new Date());
- 
 
   const [marathonData, setMarathonData] = useState({});
 
@@ -46,11 +45,11 @@ const MyMarathon = () => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-    formData.set("regEndDate", regEndDate)
+    formData.set("regEndDate", regEndDate);
     const marathonUpdateInfo = Object.fromEntries(formData.entries());
     console.log(marathonUpdateInfo, id);
 
-    console.log('regenddate', regEndDate);
+    console.log("regenddate", regEndDate);
     axios
       .put(
         `${import.meta.env.VITE_API_URL}/all-marathons/${id}`,
@@ -141,7 +140,7 @@ const MyMarathon = () => {
                 <th className="p-3">Action</th>
               </tr>
             </thead>
-            <tbody >
+            <tbody>
               {myMarathon.map((mymarathon, index) => (
                 <tr
                   key={mymarathon._id}
@@ -155,7 +154,6 @@ const MyMarathon = () => {
                   </td>
                   <td className="p-3">
                     <p>{format(mymarathon.eventStartDate, "MMMM do, yyyy")}</p>
-                    
                   </td>
                   <td className="p-3 text-center">
                     <p>{mymarathon.TotalRegistrationCount}</p>
@@ -258,8 +256,7 @@ const MyMarathon = () => {
                                     </span>
                                   </label>
                                   <DatePicker
-                                    className="input input-bordered w-full"                          
-                                    
+                                    className="input input-bordered w-full"
                                     defaultValue={mymarathon.regEndDate}
                                     onChange={(date) => setRegEndDate(date)}
                                     selected={regEndDate}
