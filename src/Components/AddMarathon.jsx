@@ -60,9 +60,9 @@ const AddMarathon = () => {
                 <title>AddMarathon - EnduroFest</title>
             </Helmet>
 
-            <div className="card bg-base-100 w-full mx-auto  border border-gray-200 shadow-md p-6 ">
+            <div className="card bg-base-100 dark:bg-gray-800 w-full mx-auto  border border-gray-200 shadow-md p-6 ">
                 {/* form heading */}
-                <h1 className='font-bold text-3xl text-cyan-700 font-roboto text-center'>Create A Marathon Event</h1>
+                <h1 className='font-bold text-3xl text-cyan-700 dark:text-blue-500 font-roboto text-center'>Create A Marathon Event</h1>
 
                 {/* form element  */}
                 <form onSubmit={handleAddMarathon} className="card-body p-0">
@@ -70,7 +70,7 @@ const AddMarathon = () => {
                     {/* user email  */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text font-semibold text-lg"> Email</span>
+                            <span className="label-text dark:text-white font-semibold text-lg"> Email</span>
                         </label>
                         <input type="email" name='email' defaultValue={user?.email} readOnly className="input input-bordered" required />
                     </div>
@@ -79,7 +79,7 @@ const AddMarathon = () => {
                     {/* title  */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text font-semibold text-lg">Marathon Title</span>
+                            <span className="label-text dark:text-white font-semibold text-lg">Marathon Title</span>
                         </label>
                         <input type="text" name='title' placeholder="Enter Marathon Title" className="input input-bordered" required />
                     </div>
@@ -87,7 +87,7 @@ const AddMarathon = () => {
                     {/* image url  */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text font-semibold text-lg"> Marathon Image</span>
+                            <span className="label-text dark:text-white font-semibold text-lg"> Marathon Image</span>
                         </label>
                         <input type="text" name='image' placeholder="Enter Marathon Image Url" className="input input-bordered" required />
                     </div>
@@ -97,7 +97,7 @@ const AddMarathon = () => {
                         {/* start reg date  */}
                         <div className="form-control lg:w-1/2">
                             <label className="label">
-                                <span className="label-text font-semibold text-lg">Start Registration Date</span>
+                                <span className="label-text dark:text-white font-semibold text-lg">Start Registration Date</span>
                             </label>
                             <DatePicker
                                 className='input input-bordered w-full'
@@ -110,7 +110,7 @@ const AddMarathon = () => {
                         {/* end reg date  */}
                         <div className="form-control lg:w-1/2">
                             <label className="label">
-                                <span className="label-text font-semibold text-lg">End Registration Date</span>
+                                <span className="label-text dark:text-white font-semibold text-lg">End Registration Date</span>
                             </label>
                             <DatePicker
                                 className='input input-bordered w-full'
@@ -127,7 +127,7 @@ const AddMarathon = () => {
                         {/* marathon strat date  */}
                         <div className="form-control lg:w-1/2">
                             <label className="label">
-                                <span className="label-text font-semibold text-lg">Marathon Start Date</span>
+                                <span className="label-text dark:text-white font-semibold text-lg">Marathon Start Date</span>
                             </label>
                             <DatePicker
                                 className='input input-bordered w-full'
@@ -140,7 +140,7 @@ const AddMarathon = () => {
                         {/* running distance  */}
                         <div className="form-control lg:w-1/2">
                             <label className="label">
-                                <span className="label-text font-semibold text-lg">Running distance
+                                <span className="label-text dark:text-white font-semibold text-lg">Running distance
                                 </span>
                             </label>
                             <select name='distance' class="w-full input appearance-auto border border-gray-300 rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent">
@@ -155,7 +155,7 @@ const AddMarathon = () => {
                     {/* event location  */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text font-semibold text-lg">Location</span>
+                            <span className="label-text dark:text-white font-semibold text-lg">Location</span>
                         </label>
                         <input type="text" name='location' placeholder="Enter Event Location" className="input input-bordered" required />
                     </div>
@@ -164,7 +164,7 @@ const AddMarathon = () => {
                     {/* event description  */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text font-semibold text-lg">Description</span>
+                            <span className="label-text dark:text-white font-semibold text-lg">Description</span>
                         </label>
                         <textarea name='description' className="textarea textarea-bordered" placeholder="Add a description about this marathon event..."></textarea>
                     </div>
@@ -172,7 +172,7 @@ const AddMarathon = () => {
                     {/* event full details  */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text font-semibold text-lg">Details</span>
+                            <span className="label-text dark:text-white font-semibold text-lg">Details</span>
                         </label>
                         <textarea name='details' className="textarea textarea-bordered" placeholder="Add Details..."></textarea>
                     </div>
