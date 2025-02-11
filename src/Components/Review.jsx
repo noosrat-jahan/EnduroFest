@@ -3,20 +3,20 @@ import React from 'react';
 const Review = () => {
     return (
         <div>
-            <div className="bg-[#e4f6e7]  py-10">
+            <div className="bg-[#e4f6e7] dark:bg-black py-10">
                 <div className="w-11/12 grid lg:grid-cols-3 items-center gap-5 justify-evenly mx-auto px-5">
                     <div className='col-span-1'>
                         <h2 className=" text-3xl text-green-800 uppercase font-extrabold text-left mb-8">
                             What Our Participants Say
                         </h2>
-                        <p>
+                        <p className='text-black dark:text-white'>
                             Heartfelt testimonials from our participants, highlighting their experiences, growth, and the positive impact of being part of our events. These stories emphasize the sense of community, inspiration, and motivation that drives everyone toward achieving their fitness goals while forming meaningful connections.
                         </p>
                     </div>
                     <div className="col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* Testimonial Card 1 */}
                         <div className="bg-[#bef2c6] text-black rounded-lg p-6 flex flex-col justify-between">
-                            <p className="text-lg italic mb-4">
+                            <p className="text-lg italic mb-4 ">
                                 "Joining the running club was a game-changer for me. I used to
                                 struggle with consistency in my running routine, but the group
                                 runs and support kept me going."

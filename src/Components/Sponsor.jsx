@@ -14,13 +14,13 @@ import jamuna from "../assets/jamuna.png"
 const Sponsor = () => {
     return (
         <div>
-            <section className="bg-amber-300  py-16 px-5">
+            <section className="bg-amber-300 dark:bg-slate-900  py-16 px-5">
                 {/* Section Title */}
                 <div className="text-center mb-8">
-                    <h2 className="text-4xl font-bold text-gray-900">
-                        Our Awesome <span className="text-black">Sponsors & Partners</span>
+                    <h2 className="text-4xl font-bold text-title">
+                        Our Awesome <span className="text-title">Sponsors & Partners</span>
                     </h2>
-                    <p className="text-gray-700">Let's Build Together</p>
+                    <p className="text-gray-700 dark:text-white mt-4">Let's Build Together</p>
                 </div>
 
                 {/* Sponsor Grid */}

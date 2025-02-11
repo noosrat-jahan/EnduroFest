@@ -28,7 +28,7 @@ const Home = () => {
 
             <Banner></Banner>
             
-            <h1 className='text-6xl text-center my-8  text-[#441752] uppercase font-bebas px-3'>Discover Marathon Events</h1>
+            <h1 className='text-6xl text-center my-8 text-title dark:text-title uppercase font-bebas px-3'>Discover Marathon Events</h1>
 
             {
                 navigation.state === "loading" ?
@@ -36,7 +36,7 @@ const Home = () => {
                         <span className=" loading loading-spinner text-pink-700 mt-10 w-10 mx-auto"></span>
                     </div>
                     :
-                    <div className='mx-auto w-[90%] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5'>
+                    <div className='mx-auto w-[90%]  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5'>
                         {
                             allMarathons.map(marathon => <HomeMarathonCard key={marathon._id} marathon={marathon} event={marathon.eventStartDate} ></HomeMarathonCard>)
                         }

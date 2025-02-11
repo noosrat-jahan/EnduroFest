@@ -36,6 +36,7 @@ const About = () => {
                 <h1 className='text-4xl text-orange-500 font-semibold text-left uppercase mb-5'>FAQ</h1>
                 <Accordion
                     expanded={expanded}
+                    
                     onChange={handleExpansion}
                     slots={{ transition: Fade }}
                     slotProps={{ transition: { timeout: 400 } }}
@@ -63,8 +64,9 @@ const About = () => {
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1-content"
                         id="panel1-header"
+                        
                     >
-                        <Typography component="span">1. What types of events does Endurofest offer?
+                        <Typography  component="span">1. What types of events does Endurofest offer?
                         </Typography>
                     </AccordionSummary>
                     <AccordionDetails>

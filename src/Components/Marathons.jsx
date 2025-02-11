@@ -23,8 +23,8 @@ const Marathons = () => {
             <Helmet>
                 <title>All Marathon - EnduroFest</title>
             </Helmet>
-            <div className=' my-10 bg-[#e4f6e7] rounded-[52px] px-8 py-10'>
-                <h1 className='text-6xl text-center my-10  text-[#441752] uppercase font-bebas px-3'>Discover Your Next Marathon Challenge</h1>
+            <div className=' my-10 bg-[#e4f6e7] dark:bg-slate-800 rounded-[52px] px-8 py-10'>
+                <h1 className='text-6xl text-center my-10  text-title uppercase font-bebas px-3'>Discover Your Next Marathon Challenge</h1>
                 <button onClick={handleSort} className='bg-purple-800 lg:px-4 px-2 py-2 my-5 text-white font-semibold rounded-md '>Sort By Date</button>
                 <div className='mx-auto  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                     {

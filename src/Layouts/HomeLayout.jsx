@@ -8,9 +8,9 @@ const HomeLayout = () => {
     const navigation = useNavigation()
 
     return (
-        <div className='font-montserrat'>
+        <div className='font-montserrat dark:bg-black'>
             <Navbar></Navbar>
-            <div className='min-h-[calc(100vh-200px)]'>
+            <div className='min-h-[calc(100vh-200px)] bg-bgprimary'>
                 {
                     navigation.state === "loading" ?
                         <div className='flex justify-center'>

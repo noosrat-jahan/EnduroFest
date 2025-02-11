@@ -118,10 +118,10 @@ const MyMarathon = () => {
             Event Creation is Zero
           </h1>
         )}
-        <h2 className="mb-4 text-2xl font-semibold leading-tight">
+        <h2 className="mb-4 text-2xl dark:text-white font-semibold leading-tight">
           My Created Marathons
         </h2>
-        <div className="overflow-x-auto bg-gray-50">
+        <div className="overflow-x-auto bg-gray-50 dark:bg-black">
           <table className="min-w-full text-sm">
             <colgroup>
               <col />
@@ -131,7 +131,7 @@ const MyMarathon = () => {
               <col />
               <col className="w-24" />
             </colgroup>
-            <thead className="dark:bg-gray-300">
+            <thead className="dark:bg-gray-800 dark:text-gray-100">
               <tr className="text-center">
                 <th className="p-3">SL.No.</th>
                 <th className="p-3">Title</th>
@@ -141,11 +141,11 @@ const MyMarathon = () => {
                 <th className="p-3">Action</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody >
               {myMarathon.map((mymarathon, index) => (
                 <tr
                   key={mymarathon._id}
-                  className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50"
+                  className="border-b border-opacity-20 self-center dark:border-gray-300 dark:bg-gray-600 dark:text-gray-50"
                 >
                   <td className="p-3">
                     <p>{index + 1}</p>
@@ -155,7 +155,7 @@ const MyMarathon = () => {
                   </td>
                   <td className="p-3">
                     <p>{format(mymarathon.eventStartDate, "MMMM do, yyyy")}</p>
-                    <p className="dark:text-gray-600">Friday</p>
+                    
                   </td>
                   <td className="p-3 text-center">
                     <p>{mymarathon.TotalRegistrationCount}</p>
@@ -163,7 +163,7 @@ const MyMarathon = () => {
                   <td className="p-3 text-center">
                     <p>{mymarathon.location}</p>
                   </td>
-                  <td className="p-3 text-center flex ">
+                  <td className="p-3 text-center flex gap-2">
                     <span className="px-3 py-1 font-bold rounded-md text-purple-900 dark:bg-violet-600 dark:text-gray-50">
                       {/* radixUI modal */}
                       <Dialog.Root>

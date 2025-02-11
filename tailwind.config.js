@@ -1,10 +1,11 @@
+
+
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: "class", // Ensures dark mode works via a CSS class
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}",
   ],
-  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
@@ -15,8 +16,13 @@ export default {
         poppins: ['Poppins', 'ui-sans-serif', 'system-ui'], // Add poppins as the default sans-serif font
         bebas: ['Bebas Neue', 'ui-sans-serif', 'system-ui'], // Add poppins as the default sans-serif font
       },
+      colors: {
+        bgprimary: "var(--background-primary)",
+        fgprimary: "var(--foreground-primary)",
+        title: "var(--homeTitle)",
+      },
     },
   },
   plugins: [require('daisyui'),],
-}
+};
 
