@@ -104,7 +104,7 @@ const HomeMarathonCard = ({ event, marathon }) => {
                   </CountdownCircleTimer>                  
                 )
                 : 
-                <p className="bg-amber-500 text-xl font-bold p-2 text-center">Registration Closed</p>
+                <p className="bg-amber-400 text-lg font-bold p-2 text-center">Event completed! <br /> Stay tuned for the next one.</p>
             }
               </div>
             </div>

@@ -24,7 +24,7 @@ const Navbar = () => {
   // Prevents hydration mismatch issue
   useEffect(() => setMounted(true), []);
 
-//   if (!mounted) return null;
+  //   if (!mounted) return null;
 
   const { user, signoutUser } = useContext(AuthContext);
   const naviagte = useNavigate();
@@ -72,6 +72,12 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-48 space-y-3 p-4 shadow"
           >
             <NavLink
+              to="/"
+              className=" bg-[#36388b] text-white rounded-md lg:px-3 px-1.5 py-2 lg:text-xl text-xs font-bold"
+            >
+              Home
+            </NavLink>
+            <NavLink
               to="/all-marathons"
               className=" bg-[#3E5879] text-white rounded-md lg:px-3 px-1.5 py-2 lg:text-xl text-xs font-bold"
             >
@@ -93,10 +99,16 @@ const Navbar = () => {
             >
               Contact
             </NavLink>
+            <NavLink
+              to="/about"
+              className="bg-[#36388b] lg:px-4 px-2 py-2 rounded-md text-white text-xs lg:text-lg font-bold"
+            >
+              About
+            </NavLink>
           </ul>
         </div>
         <Link to="/">
-          <img src={logo} alt="" className="w-1/2 lg:w-1/3 " />
+          <img src={logo} alt="" className="w-1/2  md:w-1/3 " />
         </Link>
       </div>
 
