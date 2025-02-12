@@ -21,7 +21,7 @@ const About = () => {
     return (
         <div className='w-10/12 mx-auto mt-10 text-center'>
             <h1 className='text-4xl text-purple-800 font-semibold text-center uppercase mb-5'>About <span className='text-orange-500'>Endurofest</span></h1>
-            <p className='font-poppins'>
+            <p className='font-poppins dark:text-gray-100'>
                 Welcome to Endurofest, where every stride tells a story! <br />
 
                 We are more than just a marathon – we are a celebration of passion, endurance, and community. Whether you're a seasoned athlete, a first-time runner, or someone seeking adventure, Endurofest offers something for everyone. <br /><br />
@@ -36,7 +36,7 @@ const About = () => {
                 <h1 className='text-4xl text-orange-500 font-semibold text-left uppercase mb-5'>FAQ</h1>
                 <Accordion
                     expanded={expanded}
-                    
+                    className='dark:!bg-slate-600 dark:text-gray-50'
                     onChange={handleExpansion}
                     slots={{ transition: Fade }}
                     slotProps={{ transition: { timeout: 400 } }}
@@ -64,37 +64,40 @@ const About = () => {
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1-content"
                         id="panel1-header"
+                        className='dark:!bg-slate-600 dark:text-gray-50'
                         
                     >
                         <Typography  component="span">1. What types of events does Endurofest offer?
                         </Typography>
                     </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography>
+                    <AccordionDetails >
+                        <Typography className='dark:!bg-slate-600 dark:text-gray-50'>
                             Endurofest features a variety of events, including marathons, half-marathons, fun runs, obstacle courses, and charity runs.
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
-                <Accordion>
+                <Accordion className='dark:!bg-slate-600 dark:text-gray-50'>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel2-content"
                         id="panel2-header"
+                        className='dark:!bg-slate-600 dark:text-gray-50'
                     >
                         <Typography component="span">2. How can I register for an event?</Typography>
                     </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography>
+                    <AccordionDetails >
+                        <Typography >
 
                             You can register online through our official website. Simply select your desired event, fill out the form, and complete the payment process.
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
-                <Accordion>
+                <Accordion className='dark:!bg-slate-600 dark:text-gray-50'>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel2-content"
                         id="panel2-header"
+                        className='dark:!bg-slate-600 dark:text-gray-50'
                     >
                         <Typography component="span">3. Who can participate in Endurofest ?</Typography>
                     </AccordionSummary>
@@ -104,11 +107,12 @@ const About = () => {
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
-                <Accordion>
+                <Accordion className='dark:!bg-slate-600 dark:text-gray-50'>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel2-content"
                         id="panel2-header"
+                        className='dark:!bg-slate-600 dark:text-gray-50'
                     >
                         <Typography component="span">4.What should I bring on race day ?</Typography>
                     </AccordionSummary>
@@ -119,11 +123,12 @@ const About = () => {
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
-                <Accordion>
+                <Accordion className='dark:!bg-slate-600 dark:text-gray-50'>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel2-content"
                         id="panel2-header"
+                        className='dark:!bg-slate-600 dark:text-gray-50'
                     >
                         <Typography component="span">5. Can I volunteer at Endurofest ?</Typography>
                     </AccordionSummary>

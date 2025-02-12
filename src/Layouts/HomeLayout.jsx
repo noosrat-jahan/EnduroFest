@@ -8,7 +8,7 @@ const HomeLayout = () => {
     const navigation = useNavigation()
 
     return (
-        <div className='font-montserrat dark:bg-black'>
+        <div className='font-montserrat dark:bg-bgprimary'>
             <Navbar></Navbar>
             <div className='min-h-[calc(100vh-200px)] bg-bgprimary'>
                 {

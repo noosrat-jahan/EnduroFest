@@ -40,14 +40,14 @@
 
 
 .one{
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url('./assets/marathon1.jpg');
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url('./assets/marathon1.jpg');
 }
 .two{
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url('./assets/marathon2.jpg');
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url('./assets/marathon2.jpg');
 }
 .three{
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url('./assets/marathon3.jpg');
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('./assets/marathon3.jpg');
 }
 .four{
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url('./assets/marathon4.jpg');
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url('./assets/marathon4.jpg');
 }

@@ -14,7 +14,7 @@ import jamuna from "../assets/jamuna.png"
 const Sponsor = () => {
     return (
         <div>
-            <section className="bg-amber-300 dark:bg-slate-900  py-16 px-5">
+            <section className="bg-blue-100 dark:bg-slate-900  py-16 px-5">
                 {/* Section Title */}
                 <div className="text-center mb-8">
                     <h2 className="text-4xl font-bold text-title">

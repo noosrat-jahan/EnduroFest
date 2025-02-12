@@ -48,7 +48,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar sticky top-0  shadow z-10 bg-base-100 dark:bg-black  bg-gradient-to-r from-pink-50 to-purple-100  px-4 py-3 mx-auto">
+    <div className="navbar sticky top-0  shadow z-10 bg-base-100  bg-gradient-to-r from-blue-100 to-purple-100  dark:from-slate-800 dark:to-slate-700 px-4 py-3 mx-auto">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
