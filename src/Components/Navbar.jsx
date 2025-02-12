@@ -48,7 +48,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar sticky top-0  shadow z-10 bg-base-100  bg-gradient-to-r from-blue-100 to-purple-100  dark:from-slate-800 dark:to-slate-700 px-4 py-3 mx-auto">
+    <div className="navbar sticky top-0 justify-between shadow z-10 bg-base-100  bg-gradient-to-r from-blue-100 to-purple-100  dark:from-slate-800 dark:to-slate-700 px-5 py-3 mx-auto">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -108,7 +108,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to="/">
-          <img src={logo} alt="" className="w-1/2  md:w-1/3 " />
+          <img src={logo} alt="" className="w-2/3  md:w-1/3 " />
         </Link>
       </div>
 
@@ -192,7 +192,7 @@ const Navbar = () => {
             </div>
           </div>
         ) : (
-          <div className="flex gap-3">
+          <div className="flex gap-3 lg:ml-5">
             <Link
               to="/login"
               className="bg-[#217276] lg:px-4 px-2 py-2 rounded-md text-white text-xs lg:text-lg font-bold"

@@ -128,8 +128,8 @@ const Register = () => {
                         <button className="btn bg-[#68b5fd] text-lg">Register</button>
                     </div>
                     <div className="divider divider-neutral">OR</div>
-                    <div className="lg:w-full flex justify-center space-y-2">
-                        <button onClick={handleGoogleLogin} className="btn btn-outline text-[#22177A]"><span className='text-xl'><FcGoogle /></span> Continue with Google</button>
+                    <div className="*:w-full flex justify-center space-y-2">
+                        <button onClick={handleGoogleLogin} className="btn btn-outline text-[#22177A] flex  items-center md:text-lg text-xs"><span className='md:text-xl text-sm'><FcGoogle /></span> Continue with Google</button>
                     </div>
 
                     <p className='mt-4 text-center'> Already Have an Account?
