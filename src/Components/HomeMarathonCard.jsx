@@ -24,92 +24,99 @@ const HomeMarathonCard = ({ event, marathon }) => {
   };
 
   const remainingTime = calculateTimeLeft(event);
- 
 
   return (
     <div>
       <div className="bg border border-gray-300 shadow-md h-full">
         <div className=" flex flex-col-reverse lg:flex-row gap-3 pb-4">
-          <div className="p-3  space-y-3">
-            <h1 className="text-3xl font-bold uppercase font-roboto">
-              {marathon.title}
-            </h1>
-            <h3 className="font-semibold text-xl text-teal-800 flex items-center gap-2">
-              <IoLocationSharp /> {marathon.location}
-            </h3>
+          <div>
+            <div className="p-3  space-y-3">
+              <h1 className="text-3xl font-bold uppercase font-roboto">
+                {marathon.title}
+              </h1>
+              <h3 className="font-semibold text-xl text-teal-800 flex items-center gap-2">
+                <IoLocationSharp /> {marathon.location}
+              </h3>
 
-            <p className="flex items-center gap-2 font-semibold text-blue-800 ">
-              <LuCalendarDays /> Registration Start:{" "}
-              {format(marathon.regStartDate, "MMMM do, yyyy")}
-            </p>
-            <p className="flex items-center gap-2 pb-20 font-semibold text-red-800 ">
-              <LuCalendarDays /> Registration Ends:{" "}
-              {format(marathon.regEndDate, "MMMM do, yyyy")}
-            </p>
+              <p className="flex items-center gap-2 font-semibold text-blue-800 ">
+                <LuCalendarDays /> Registration Start:{" "}
+                {format(marathon.regStartDate, "MMMM do, yyyy")}
+              </p>
+              <p className="flex items-center gap-2  font-semibold text-red-800 ">
+                <LuCalendarDays /> Registration Ends:{" "}
+                {format(marathon.regEndDate, "MMMM do, yyyy")}
+              </p>
 
-            {/* countdown  */}
-            <div className="pb-16">
-              <div className="bg-gray-100 flex justify-center rounded-lg shadow-lg mx-auto">
-                {remainingTime > 0 ? (
-                  <CountdownCircleTimer
-                    isSmoothColorTransition={true}
-                    size={0}
-                    isPlaying
-                    duration={remainingTime / 1000}
-                    colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
-                    colorsTime={[remainingTime / 10000, 6, 3, 0]}
-                    onComplete={() => ({ shouldRepeat: true, delay: 1 })}
-                  >
-                    {({ remainingTime }) => {
-                      const { days, hours, minutes, seconds } =
-                        formatTime(remainingTime);
-                      return (
-                        <div className="text-center pb-20 ">
-                          <h1 className="text-green-900 font-bold text-xl ">
-                            Event Starts In
-                          </h1>
-                          <div className="grid grid-cols-4 gap-16  items-center">
-                            <div className="flex flex-col items-center">
-                              <span className="text-2xl font-bold text-orange-600">
-                                {days}
-                              </span>
-                              <span className="text-sm text-black">Days</span>
+              {/* countdown  */}
+              <div className="">
+                <div className="bg-gray-100  flex justify-center rounded-lg shadow-lg mx-auto">
+                  {remainingTime > 0 ? (
+                    <div className="relative top-20 ">
+                      <CountdownCircleTimer
+                        isSmoothColorTransition={true}
+                        size={0}
+                        isPlaying
+                        duration={remainingTime / 1000}
+                        colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
+                        colorsTime={[remainingTime / 10000, 6, 3, 0]}
+                        onComplete={() => ({ shouldRepeat: true, delay: 1 })}
+                      >
+                        {({ remainingTime }) => {
+                          const { days, hours, minutes, seconds } =
+                            formatTime(remainingTime);
+                          return (
+                            <div className="text-center pb-20 ">
+                              <h1 className="text-green-900 font-bold text-xl ">
+                                Event Starts In
+                              </h1>
+                              <div className="grid grid-cols-4 gap-16  items-center">
+                                <div className="flex flex-col items-center">
+                                  <span className="text-2xl font-bold text-orange-600">
+                                    {days}
+                                  </span>
+                                  <span className="text-sm text-black">
+                                    Days
+                                  </span>
+                                </div>
+                                <div className="flex flex-col items-center">
+                                  <span className="text-2xl font-bold text-blue-600">
+                                    {hours}
+                                  </span>
+                                  <span className="text-sm text-black">
+                                    Hours
+                                  </span>
+                                </div>
+                                <div className="flex flex-col items-center">
+                                  <span className="text-2xl font-bold text-pink-600">
+                                    {minutes}
+                                  </span>
+                                  <span className="text-sm text-black">
+                                    Minutes
+                                  </span>
+                                </div>
+                                <div className="flex flex-col items-center">
+                                  <span className="text-3xl font-bold text-black">
+                                    {seconds}
+                                  </span>
+                                  <span className="text-sm text-black">
+                                    Seconds
+                                  </span>
+                                </div>
+                              </div>
                             </div>
-                            <div className="flex flex-col items-center">
-                              <span className="text-2xl font-bold text-blue-600">
-                                {hours}
-                              </span>
-                              <span className="text-sm text-black">Hours</span>
-                            </div>
-                            <div className="flex flex-col items-center">
-                              <span className="text-2xl font-bold text-pink-600">
-                                {minutes}
-                              </span>
-                              <span className="text-sm text-black">
-                                Minutes
-                              </span>
-                            </div>
-                            <div className="flex flex-col items-center">
-                              <span className="text-3xl font-bold text-black">
-                                {seconds}
-                              </span>
-                              <span className="text-sm text-black">
-                                Seconds
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    }}
-                  </CountdownCircleTimer>                  
-                )
-                : 
-                <p className="bg-amber-400 text-lg font-bold p-2 text-center">Event completed! <br /> Stay tuned for the next one.</p>
-            }
+                          );
+                        }}
+                      </CountdownCircleTimer>
+                    </div>
+                  ) : (
+                    <p className="bg-amber-400 text-lg font-bold p-2 text-center">
+                      Event completed! <br /> Stay tuned for the next one.
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
-
-            <div className="z-30">
+            <div className={`z-30 pl-3 ${remainingTime > 0 && "lg:relative lg:top-20 mt-20 lg:mt-0"} `}>
               <Link
                 to={`/all-marathons/${marathon._id}`}
                 className="bg-yellow-300  font-bold font-roboto uppercase px-5 w-2/3 py-2 flex items-center gap-1 rounded-sm cursor-pointer"
@@ -118,7 +125,11 @@ const HomeMarathonCard = ({ event, marathon }) => {
               </Link>
             </div>
           </div>
-          <img src={marathon.image} alt="" className="lg:w-1/2  mt-0" />
+          <img
+            src={marathon.image}
+            alt=""
+            className="lg:w-1/2 h-[400px] mt-0"
+          />
         </div>
       </div>
     </div>
